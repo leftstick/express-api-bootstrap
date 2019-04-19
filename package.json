@@ -1,0 +1,37 @@
+{
+  "name": "express-api-loader",
+  "version": "1.0.0",
+  "description": "Enhance API writing experience",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leftstick/express-api-loader.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leftstick/express-api-loader/issues"
+  },
+  "homepage": "https://github.com/leftstick/express-api-loader#readme",
+  "devDependencies": {
+    "axios": "^0.18.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "express": "^4.16.4"
+  },
+  "peerDependencies": {
+    "express": ">=4.0.0"
+  },
+  "dependencies": {
+    "glob": "^7.1.3",
+    "parse-comments": "^1.0.0",
+    "safe-reaper": "^1.1.0"
+  }
+}
