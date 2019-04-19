@@ -94,15 +94,15 @@ function apisExposedShouldHaveDeclaration(apiMethods, ast) {
  *
  * @param {Array<string>} apiMethods
  * @param {any} ast
- * @param {Object} module
+ * @param {Object} moduleInstance
  *
  * @returns {Array<{apiHandler: Function, httpMethod: string, api: string}>}
  */
-function getRouteInfo(apiMethods, ast, module) {
+function getRouteInfo(apiMethods, ast, moduleInstance) {
   return apiMethods.map(apiMethod => {
     const { tags } = ast.find(a => reap(a, 'code.context.name') === apiMethod)
     return {
-      apiHandler: module[apiMethod],
+      apiHandler: moduleInstance[apiMethod],
       httpMethod: (tags.find(tag => tag.title.toLowerCase() === 'method') || {}).name || '',
       api: (tags.find(tag => tag.title.toLowerCase() === 'api') || {}).name || ''
     }
