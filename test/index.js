@@ -1,8 +1,14 @@
 const express = require('express')
 const { resolve } = require('path')
-const { withExpressApp, withCors } = require('../')
+const { withExpressApp, withCors, withLogger } = require('../')
 
 const app = express()
+
+withLogger({
+  info(...args) {
+    console.dir(...args)
+  }
+})
 
 withCors(app)
 
