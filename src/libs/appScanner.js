@@ -144,6 +144,7 @@ function register(app, routeInfos, apiPrefix) {
             res.json(responseHandler.onErrorResponse(err))
           }
         )
+        return
       }
       if (result) {
         res.json(responseHandler.onNormalResponse(result))

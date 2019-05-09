@@ -1,6 +1,6 @@
 {
   "name": "express-api-loader",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Enhance API writing experience",
   "main": "src/index.js",
   "scripts": {
