@@ -1,6 +1,6 @@
 {
   "name": "express-api-loader",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Enhance API writing experience",
   "main": "src/index.js",
   "scripts": {
@@ -30,6 +30,7 @@
     "express": ">=4.0.0"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "glob": "^7.1.3",
     "parse-comments": "^1.0.0",
     "safe-reaper": "^1.1.0"

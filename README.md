@@ -49,7 +49,7 @@ npm install --save express-api-loader
 const { withExpressApp } = require('express-api-loader')
 ```
 
-## Usage
+## Quick Start
 
 Let's say you have `apis/users/user.js` as below:
 
@@ -101,6 +101,38 @@ curl http://localhost:9876/apis/users/123?name=hello
 ```
 
 to see the result.
+
+## Methods
+
+### withCors(app: express.Express)
+
+Enable `Cross-Origin Resource Sharing`
+
+### withExpressApp(app: express.Express)
+
+Setup scan options for API initialization
+
+### withLogger(opts)
+
+Provide specific `logger` implementation. `console.log/warn/error` is used by default
+
+### withRequestHandler(app: express.Express, customHandler: (function(bodyParser): any))
+
+Setup request middlewares as needed. `app.use(bodyParser.json())` by default
+
+### withResponseHandler(opts: {onNormalResponse: function, onErrorResponse: function})
+
+Setup response transformer for normal/error case individually while fast `return {value}` with `@api`
+
+## Properties
+
+### logger
+
+Log information
+
+### ResponseError
+
+You have to use this custom error implementation while throwing error within `@api`
 
 ## LICENSE
 

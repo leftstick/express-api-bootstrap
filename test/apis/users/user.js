@@ -2,21 +2,21 @@
  * @method get
  * @api /users/:id
  */
-module.exports.getUsers = async function(req, res) {
+module.exports.getUsers = function(req) {
   const { url, originalUrl, params } = req
 
-  res.json({
+  return {
     url,
     originalUrl,
     id: params.id
-  })
+  }
 }
 
 /**
  * @method post
  * @api /users
  */
-module.exports.createUser = async function(req, res) {
+module.exports.createUser = function(req, res) {
   const { url, originalUrl, params } = req
 
   res.json({

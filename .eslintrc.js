@@ -34,6 +34,7 @@ module.exports = {
     'import/no-dynamic-require': ['off'],
     'no-use-before-define': ['off'],
     'no-param-reassign': ['error', { props: false }],
-    'no-console': ['off']
+    'no-console': ['off'],
+    yoda: ['off']
   }
 }

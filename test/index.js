@@ -1,8 +1,10 @@
 const express = require('express')
 const { resolve } = require('path')
-const { withExpressApp } = require('../')
+const { withExpressApp, withCors } = require('../')
 
 const app = express()
+
+withCors(app)
 
 withExpressApp(app)({
   scanOpts: {
