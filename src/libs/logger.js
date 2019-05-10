@@ -22,7 +22,7 @@ const LOGGER_KEYS = ['debug', 'info', 'warn', 'error', 'fatal']
  *
  * @param {Logger} opts
  */
-module.exports.withLogger = function(opts) {
+module.exports.setLogger = function(opts) {
   Object.keys(opts)
     .filter(k => LOGGER_KEYS.includes(k))
     .forEach(key => {

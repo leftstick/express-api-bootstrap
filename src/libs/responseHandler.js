@@ -32,7 +32,7 @@ const responseHandler = {
  *
  * @param {ResponseHandler} opts
  */
-module.exports.withResponseHandler = function(opts) {
+module.exports.setupResponseHandler = function(opts) {
   if (opts.onNormalResponse) {
     responseHandler.onNormalResponse = opts.onNormalResponse
   }

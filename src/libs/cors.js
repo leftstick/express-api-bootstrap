@@ -2,8 +2,13 @@
  * should be called before withExpressApp
  *
  * @param {express.Express} app
+ * @param {boolean} enableCors
  */
-module.exports.withCors = function(app) {
+module.exports.enableCors = function(app, enableCors) {
+  if (!enableCors) {
+    return
+  }
+
   app.use('*', (req, res, next) => {
     if (!req.get('Origin')) {
       return next()

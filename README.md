@@ -14,18 +14,18 @@ We'd like to provide a new way as below:
  * @method get
  * @api /users/:id
  */
-module.exports.getUsers = function(req, res) {
+module.exports.getUsers = function(req) {
   const { url, originalUrl, params } = req
 
-  res.json({
+  return {
     url,
     originalUrl,
     id: params.id
-  })
+  }
 }
 ```
 
-It's declarative, all you need for API writing is giving a proper annotation, `@method` - for http method definition; `@api` - for API path. And nothing else.
+It's declarative, so all you need is giving a proper annotation, `@method` - for http method definition; `@api` - for API path. And nothing else.
 
 You don't have to worry about how [router](http://expressjs.com/en/4x/api.html#router) organized any more.
 
@@ -51,21 +51,21 @@ const { withExpressApp } = require('express-api-loader')
 
 ## Quick Start
 
-Let's say you have `apis/users/user.js` as below:
+Let's say you want write an API at `apis/users/user.js`, code as below:
 
 ```javascript
 /**
  * @method get
  * @api /users/:id
  */
-module.exports.getUsers = async function(req, res) {
+module.exports.getUsers = function(req) {
   const { url, originalUrl, params } = req
 
-  res.json({
+  return {
     url,
     originalUrl,
     id: params.id
-  })
+  }
 }
 ```
 
@@ -104,25 +104,48 @@ to see the result.
 
 ## Methods
 
-### withCors(app: express.Express)
+### withExpressApp(app: express.Express): (function(RegisterOptions) : void)
 
-Enable `Cross-Origin Resource Sharing`
+```javascript
+/**
+ * @typedef {object} Logger - options for logger
+ * @property {Function} debug log debug info
+ * @property {Function} info log normal info
+ * @property {Function} warn log warning info
+ * @property {Function} error log error info
+ * @property {Function} fatal log fatal info
+ */
 
-### withExpressApp(app: express.Express)
+/**
+ * @typedef {object} ScanOptions - options for scanning
+ * @property {string} pattern Pattern to be matched
+ * @property {string} cwd The current working directory in which to search. Defaults to process.cwd()
+ * @property {string} ignore Add a pattern or an array of glob patterns to exclude matches. Defaults to ['\*\*\/\_\*.js', '\*\*\/\_\*\/\*.js']
+ */
 
-Setup scan options for API initialization
+/**
+ * @typedef {object} ScannedModule - module scanned
+ * @property {string} filePath path of module
+ * @property {object} moduleInstance object
+ * @property {string} code code text of module
+ * @property {object} ast ast
+ */
 
-### withLogger(opts)
+/**
+ * @typedef {object} ResponseHandler - handler
+ * @property {function(any):({errorCode: number, data: any})=} onNormalResponse
+ * @property {function(ResponseError):({errorCode: number, message: string})=} onErrorResponse
+ */
 
-Provide specific `logger` implementation. `console.log/warn/error` is used by default
-
-### withRequestHandler(app: express.Express, customHandler: (function(bodyParser): any))
-
-Setup request middlewares as needed. `app.use(bodyParser.json())` by default
-
-### withResponseHandler(opts: {onNormalResponse: function, onErrorResponse: function})
-
-Setup response transformer for normal/error case individually while fast `return {value}` with `@api`
+/**
+ * @typedef {object} RegisterOptions - options of register function
+ * @property {ScanOptions} scanOpts
+ * @property {string} apiPrefix - prefix will be prepended in every registered api
+ * @property {boolean} enableCors - whether to enable cors
+ * @property {Logger} logger - setup custom logger
+ * @property {function(bodyParser): any} requestParser - setup custom requestParser. 'app.use(bodyParser.json())' by default
+ * @property {ResponseHandler} responseHandler - setup custom response handler
+```
 
 ## Properties
 

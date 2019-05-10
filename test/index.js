@@ -1,16 +1,8 @@
 const express = require('express')
 const { resolve } = require('path')
-const { withExpressApp, withCors, withLogger } = require('../')
+const { withExpressApp } = require('../')
 
 const app = express()
-
-withLogger({
-  info(...args) {
-    console.dir(...args)
-  }
-})
-
-withCors(app)
 
 withExpressApp(app)({
   scanOpts: {
@@ -18,7 +10,18 @@ withExpressApp(app)({
     pattern: '**/*.js',
     ignore: ['**/_*.js']
   },
-  apiPrefix: '/apis'
+  apiPrefix: '/apis',
+  logger: {
+    info: console.dir
+  },
+  responseHandler: {
+    onNormalResponse(data) {
+      return {
+        data,
+        success: true
+      }
+    }
+  }
 })
 
 app.listen(9876, () => {

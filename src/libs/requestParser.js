@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
  * @param {express.Express} app
  * @param {function(bodyParser): any} customHandler
  */
-module.exports.withRequestHandler = function(app, customHandler) {
+module.exports.setupRequestParser = function(app, customHandler) {
   if (!customHandler) {
     return app.use(bodyParser.json())
   }
