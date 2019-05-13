@@ -1,7 +1,7 @@
 ---
 home: true
-actionText: Get Started
-actionLink: /guide/
+actionText: More Information
+actionLink: /api/
 ---
 
 [![NPM version][npm-image]][npm-url]
