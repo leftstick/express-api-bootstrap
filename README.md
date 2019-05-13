@@ -82,9 +82,7 @@ const app = express()
 // scan API files and register as routers automatically
 withExpressApp(app)({
   scanOpts: {
-    cwd: resolve(__dirname, 'apis'), // where to start scanning
-    pattern: '**/*.js', // which file will be loaded as API declaration
-    ignore: ['**/_*.js'] // which file will be ignored from scanning
+    cwd: resolve(__dirname, 'apis') // where to start scanning
   },
   apiPrefix: '/apis' // will be prepended in every api path
 })
