@@ -12,6 +12,9 @@ module.exports = {
     ],
     sidebar: {
       '/api/': ['']
+    },
+    serviceWorker: {
+      updatePopup: true
     }
   }
 }
