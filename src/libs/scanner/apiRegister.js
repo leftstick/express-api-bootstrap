@@ -72,7 +72,7 @@ module.exports.registerAPIs = function(app, scannedModules, registerOptions) {
     })
   })
 
-  app.use(registerOptions.apiPrefix, router)
+  app.use(registerOptions.apiPrefix || '/apis', router)
 }
 
 /**
