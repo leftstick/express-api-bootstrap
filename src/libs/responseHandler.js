@@ -33,11 +33,11 @@ const responseHandler = {
  * @param {ResponseHandler} opts
  */
 module.exports.setupResponseHandler = function(opts) {
-  if (opts.onNormalResponse) {
+  if (opts && opts.onNormalResponse) {
     responseHandler.onNormalResponse = opts.onNormalResponse
   }
 
-  if (opts.onErrorResponse) {
+  if (opts && opts.onErrorResponse) {
     responseHandler.onErrorResponse = opts.onErrorResponse
   }
 }
