@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node test",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:deploy": "vuepress build docs && gh-pages -d docs/.vuepress/dist"
   },
   "files": [
     "src"
@@ -27,6 +27,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2",
     "express": "^4.16.4",
+    "gh-pages": "^2.0.1",
     "vuepress": "^0.14.11"
   },
   "peerDependencies": {

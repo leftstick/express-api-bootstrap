@@ -2,6 +2,7 @@ module.exports = {
   title: 'express-api-bootstrap',
   description: 'Declarative way for API server',
   serviceWorker: true,
+  base: '/express-api-bootstrap/',
   themeConfig: {
     home: true,
     logo: '/favicon.png',
