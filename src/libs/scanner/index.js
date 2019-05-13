@@ -90,7 +90,6 @@ module.exports.withExpressApp = function(app) {
       logger.error(error)
       process.exit(-1)
     }
-    return null
   }
 
   return register

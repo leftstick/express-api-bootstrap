@@ -1,4 +1,8 @@
-# express-api-bootstrap
+---
+home: true
+actionText: Get Started
+actionLink: /guide/
+---
 
 [![NPM version][npm-image]][npm-url]
 ![][david-url]

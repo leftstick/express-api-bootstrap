@@ -1,30 +1,33 @@
 {
-  "name": "express-api-loader",
-  "version": "1.1.1",
+  "name": "express-api-bootstrap",
+  "version": "1.0.0",
   "description": "Enhance API writing experience",
   "main": "src/index.js",
   "scripts": {
-    "test": "node test"
+    "test": "node test",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "files": [
     "src"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leftstick/express-api-loader.git"
+    "url": "git+https://github.com/leftstick/express-api-bootstrap.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/leftstick/express-api-loader/issues"
+    "url": "https://github.com/leftstick/express-api-bootstrap/issues"
   },
-  "homepage": "https://github.com/leftstick/express-api-loader#readme",
+  "homepage": "https://github.com/leftstick/express-api-bootstrap#readme",
   "devDependencies": {
     "axios": "^0.18.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "vuepress": "^0.14.11"
   },
   "peerDependencies": {
     "express": ">=4.0.0"
