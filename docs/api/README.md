@@ -96,7 +96,7 @@ prefix will be prepended in every registered api
 
 `boolean`
 
-whether to enable cors
+whether to enable cors, `true` by default
 
 ### logger
 

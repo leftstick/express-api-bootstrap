@@ -65,8 +65,8 @@ module.exports.withExpressApp = function(app) {
    */
   function register(options) {
     try {
-      setLogger(app, options.logger)
-      enableCors(app, options.enableCors)
+      setLogger(app, options.logger || {})
+      enableCors(app, options.enableCors || true)
       setupRequestParser(app, options.requestParser)
       setupResponseHandler(options.responseHandler)
 
