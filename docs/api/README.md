@@ -80,7 +80,7 @@ throw new ResponseError('unknown issue', 1000856)
 
 ### scanOpts
 
-**pattern** - `string`： Pattern to be matched
+**pattern** - `string`： Pattern to be matched. Defaults to '\*\*\/\*.js'
 
 **cwd** - `string`： The current working directory in which to search. Defaults to process.cwd()
 

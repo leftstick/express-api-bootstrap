@@ -5,7 +5,7 @@ const { responseHandler } = require('../responseHandler')
 
 /**
  * @typedef {object} ScanOptions - options for scanning
- * @property {string} pattern Pattern to be matched
+ * @property {string} pattern Pattern to be matched. Defaults to '\*\*\/\*.js'
  * @property {string} cwd The current working directory in which to search. Defaults to process.cwd()
  * @property {string} ignore Add a pattern or an array of glob patterns to exclude matches. Defaults to ['\*\*\/\_\*.js', '\*\*\/\_\*\/\*.js']
  */
