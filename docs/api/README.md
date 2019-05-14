@@ -90,7 +90,7 @@ throw new ResponseError('unknown issue', 1000856)
 
 `string`
 
-prefix will be prepended in every registered api
+prefix will be prepended in every registered api. Defaults to `/apis`
 
 ### enableCors
 
