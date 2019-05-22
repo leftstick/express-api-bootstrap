@@ -11,7 +11,7 @@ const glob = require('glob')
  * @param {ScanOptions} opts
  */
 module.exports.scanAPIs = function(opts) {
-  return glob.sync(opts.pattern, {
+  return glob.sync(opts.pattern || '**/*.js', {
     absolute: true,
     cwd: opts.cwd || process.cwd(),
     ignore: opts.ignore || ['**/_*.js', '**/_*/*.js']

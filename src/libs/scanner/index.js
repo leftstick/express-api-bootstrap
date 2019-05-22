@@ -63,14 +63,20 @@ module.exports.withExpressApp = function(app) {
   /**
    * @param {RegisterOptions} options
    */
-  function register(options) {
+  function register(options = {}) {
     try {
       setLogger(app, options.logger || {})
       enableCors(app, options.enableCors || true)
       setupRequestParser(app, options.requestParser)
       setupResponseHandler(options.responseHandler)
 
-      const scannedFiles = scanAPIs(options.scanOpts)
+      const scannedFiles = scanAPIs(
+        options.scanOpts || {
+          pattern: '**/*.js',
+          cwd: process.cwd(),
+          ignore: ['**/_*.js', '**/_*/*.js']
+        }
+      )
 
       /**
        * @type {Array<ScannedModule>}
