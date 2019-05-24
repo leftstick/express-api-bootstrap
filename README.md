@@ -34,13 +34,13 @@ You don't have to worry about how [router](http://expressjs.com/en/4x/api.html#r
 ### yarn
 
 ```bash
-yarn add express-api-bootstrap
+yarn add express express-api-bootstrap
 ```
 
 ### npm
 
 ```bash
-npm install --save express-api-bootstrap
+npm install --save express express-api-bootstrap
 ```
 
 ## Import
