@@ -1,6 +1,7 @@
 const express = require('express')
 const { reap } = require('safe-reaper')
 const { isEmpty } = require('../../helper/object')
+const { logger } = require('../logger')
 const { responseHandler } = require('../responseHandler')
 
 /**
@@ -61,6 +62,7 @@ module.exports.registerAPIs = function(app, scannedModules, registerOptions) {
             res.json(responseHandler.onNormalResponse(data))
           },
           err => {
+            logger.error(err)
             res.json(responseHandler.onErrorResponse(err))
           }
         )
