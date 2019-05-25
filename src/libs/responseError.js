@@ -1,8 +1,14 @@
 class ResponseError extends Error {
-  constructor(message, code, stack) {
-    super(message)
+  constructor(messageOrError, code) {
+    if (messageOrError instanceof Error) {
+      super(messageOrError.message)
+      this.originalName = messageOrError.name
+      this.stack = messageOrError.stack
+    } else {
+      super(messageOrError)
+    }
+    this.name = 'ResponseError'
     this.code = code
-    this.stack = stack
   }
 }
 
