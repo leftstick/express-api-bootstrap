@@ -1,6 +1,6 @@
 {
   "name": "express-api-bootstrap",
-  "version": "2.0.9",
+  "version": "2.0.10",
   "description": "Enhance API writing experience",
   "main": "src/index.js",
   "scripts": {
