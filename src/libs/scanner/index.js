@@ -1,6 +1,7 @@
 /* eslint-disable */
 const express = require('express')
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 /* eslint-enable */
 
 const Parser = require('parse-comments')
@@ -50,7 +51,7 @@ const { setupResponseHandler } = require('../responseHandler')
  * @property {string} apiPrefix - prefix will be prepended in every registered api
  * @property {boolean} enableCors - whether to enable cors
  * @property {Logger} logger - setup custom logger
- * @property {function(bodyParser): any} requestParser - setup custom requestParser. 'app.use(bodyParser.json())' by default
+ * @property {function({bodyParser: bodyParser, cookieParser: cookieParser}): any} requestParser - setup custom requestParser. 'app.use(bodyParser.json()); app.use(cookieParser());' by default
  * @property {ResponseHandler} responseHandler - setup custom response handler
  */
 

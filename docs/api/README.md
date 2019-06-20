@@ -30,8 +30,8 @@ withExpressApp(app)({
     info: console.dir
   },
   enableCors: false,
-  requestParser(bodyParser) {
-    app.use(bodyParser.json())
+  requestParser(opts) {
+    app.use(opts.bodyParser.json())
   },
   responseHandler: {
     onNormalResponse(data) {
@@ -106,9 +106,9 @@ setup custom logger
 
 ### requestParser
 
-`{ (bodyParser: BodyParser): void }`
+`{ ({bodyParser: BodyParser, cookieParser: CookieParser}): void }`
 
-setup custom requestParser. 'app.use(bodyParser.json())' by default
+setup custom requestParser. 'app.use(bodyParser.json()); app.use(cookieParser());' by default
 
 ### responseHandler
 
