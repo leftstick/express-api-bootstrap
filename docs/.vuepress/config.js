@@ -7,6 +7,7 @@ module.exports = {
     home: true,
     logo: '/favicon.png',
     nav: [
+      { text: 'Overview', link: '/overview/' },
       { text: 'API', link: '/api/' },
       { text: 'Github', link: 'https://github.com/leftstick/express-api-bootstrap' }
     ],
