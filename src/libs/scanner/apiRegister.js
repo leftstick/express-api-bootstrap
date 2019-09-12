@@ -1,6 +1,8 @@
 const express = require('express')
 const { reap } = require('safe-reaper')
-const { isEmpty } = require('../../helper/object')
+const {
+  isEmpty, isArray, isFunc, isObject
+} = require('../../helper/object')
 const { logger } = require('../logger')
 const { responseHandler } = require('../responseHandler')
 
@@ -49,9 +51,9 @@ module.exports.registerAPIs = function(app, scannedModules, registerOptions) {
     []
   )
   const router = express.Router()
-
+  const { middleware = [] } = registerOptions
   apiInfos.forEach(apiInfo => {
-    router[apiInfo.httpMethod](apiInfo.api, (req, res) => {
+    router[apiInfo.httpMethod](apiInfo.api, ...generateMiddleware(apiInfo.api, middleware), (req, res) => {
       const result = apiInfo.apiHandler(req, res)
       if (result && result.then && result.catch) {
         result.then(
@@ -152,4 +154,48 @@ function getCommentValueByKey(tags, key) {
  */
 function getAstByMethodName(asts, methodName) {
   return asts.find(a => reap(a, 'code.context.name') === methodName)
+}
+
+function generateMiddleware(route, middleware) {
+  if (!isArray(middleware)) {
+    throw new Error('middleware must be a Array')
+  }
+  return middleware.reduce((pre, item) => {
+    if (isFunc(item)) {
+      return [...pre, item]
+    }
+    if (!isObject(item)) {
+      throw new Error(`middleware ${item} must be a function or object`)
+    }
+    const { func, match } = item
+    if (!isFunc(func)) {
+      throw new Error(`middleware ${func} must be a function`)
+    }
+    if (match) {
+      return [...pre, ...matchFunc(route, item)]
+    }
+    return [...pre, ...ignoreFunc(route, item)]
+  }, [])
+}
+
+function matchFunc(route, item) {
+  const { match, func } = item
+  if (!isArray(match)) {
+    throw new Error('match must be a Array')
+  }
+  if (match.includes(route)) {
+    return [func]
+  }
+  return []
+}
+
+function ignoreFunc(route, item) {
+  const { ignore, func } = item
+  if (!isArray(ignore)) {
+    throw new Error('ignore must be a Array')
+  }
+  if (!ignore.includes(route)) {
+    return [func]
+  }
+  return []
 }

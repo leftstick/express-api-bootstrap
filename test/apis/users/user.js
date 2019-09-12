@@ -25,3 +25,31 @@ module.exports.createUser = function(req, res) {
     id: params.id
   })
 }
+
+/**
+ * @method post
+ * @api /match
+ */
+module.exports.testMatch = function(req, res) {
+  const { url, originalUrl, params } = req
+
+  res.json({
+    url,
+    originalUrl,
+    id: params.id
+  })
+}
+
+/**
+ * @method post
+ * @api /ignore
+ */
+module.exports.testIgnore = function(req, res) {
+  const { url, originalUrl, params } = req
+
+  res.json({
+    url,
+    originalUrl,
+    id: params.id
+  })
+}
