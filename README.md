@@ -1,112 +1,52 @@
-# express-api-bootstrap
+# umi-locale-doctor
 
-[![NPM version][npm-image]][npm-url]
+[![NPM Version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Coverage Status][coverage-image]][coverage-url]
 ![][david-url]
 ![][dt-url]
+[![code style: prettier][prettier-image]][prettier-url]
 ![][license-url]
 
-Enhance API writing experience in declarative way with [Express.js](http://expressjs.com/).
+A useful tool to analyze [umi locale usage](https://umijs.org/api/#locale):
 
-We'd like to provide a new way as below:
+- keys are miss defined in locales
+- keys are never used in source code
 
-```javascript
-/**
- * @method get
- * @api /users/:id
- */
-module.exports.getUsers = function(req) {
-  const { url, originalUrl, params } = req
+See below:
 
-  return {
-    url,
-    originalUrl,
-    id: params.id
-  }
-}
-```
-
-It's declarative, so all you need is giving a proper annotation, `@method` - for http method definition; `@api` - for API path. And nothing else.
-
-You don't have to worry about how [router](http://expressjs.com/en/4x/api.html#router) organized any more.
+![](./docs/demo.gif)
 
 ## Install
 
-### yarn
+```bash
+yarn global add umi-locale-doctor
+```
+
+## Usage
+
+Execute `udoctor` at the root dir of your `umi` based repo.
 
 ```bash
-yarn add express express-api-bootstrap
+udoctor
 ```
 
-### npm
+## Want to contribute?
 
-```bash
-npm install --save express express-api-bootstrap
-```
-
-## Import
-
-```javascript
-const { withExpressApp } = require('express-api-bootstrap')
-```
-
-## Quick Start
-
-Let's say you want write an API at `apis/users/user.js`, code as below:
-
-```javascript
-/**
- * @method get
- * @api /users/:id
- */
-module.exports.getUsers = function(req) {
-  const { url, originalUrl, params } = req
-
-  return {
-    url,
-    originalUrl,
-    id: params.id
-  }
-}
-```
-
-How can we get it up and running as APIs? see:
-
-```javascript
-const express = require('express')
-const { resolve } = require('path')
-const { withExpressApp } = require('express-api-bootstrap')
-
-// create express app as usual
-const app = express()
-
-// scan API files and register as routers automatically
-withExpressApp(app)({
-  scanOpts: {
-    pattern: '**/*.js',
-    cwd: resolve(__dirname, 'apis') // where to start scanning
-  },
-  apiPrefix: '/apis' // will be prepended in every api path
-})
-
-app.listen(9876, () => {
-  console.log('server running at 9876')
-})
-```
-
-try
-
-```bash
-curl http://localhost:9876/apis/users/123?name=hello
-```
-
-to see the result.
+see [contributing](https://github.com/umijs/umi-locale-doctor/blob/master/CONTRIBUTING.md)
 
 ## LICENSE
 
-[MIT License](https://raw.githubusercontent.com/leftstick/express-api-bootstrap/master/LICENSE)
+[MIT License](https://raw.githubusercontent.com/umijs/umi-locale-doctor/master/LICENSE)
 
-[npm-url]: https://npmjs.org/package/express-api-bootstrap
-[npm-image]: https://badge.fury.io/js/express-api-bootstrap.png
-[david-url]: https://david-dm.org/leftstick/express-api-bootstrap.png
-[dt-url]: https://img.shields.io/npm/dt/express-api-bootstrap.svg
-[license-url]: https://img.shields.io/npm/l/express-api-bootstrap.svg
+[npm-url]: https://npmjs.org/package/umi-locale-doctor
+[npm-image]: https://badge.fury.io/js/umi-locale-doctor.png
+[david-url]: https://david-dm.org/umijs/umi-locale-doctor.png
+[travis-image]: https://www.travis-ci.org/umijs/umi-locale-doctor.svg?branch=master
+[travis-url]: https://travis-ci.com/umijs/umi-locale-doctor
+[coverage-image]: https://coveralls.io/repos/github/umijs/umi-locale-doctor/badge.svg?branch=master
+[coverage-url]: https://coveralls.io/github/umijs/umi-locale-doctor
+[dt-url]: https://img.shields.io/npm/dt/umi-locale-doctor.svg
+[license-url]: https://img.shields.io/github/license/umijs/umi-locale-doctor
+[prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg
+[prettier-url]: https://github.com/prettier/prettier

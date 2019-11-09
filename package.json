@@ -1,46 +1,70 @@
 {
   "name": "express-api-bootstrap",
-  "version": "2.1.0",
-  "description": "Enhance API writing experience",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "node test",
-    "docs:dev": "vuepress dev docs",
-    "docs:deploy": "vuepress build docs && gh-pages -d docs/.vuepress/dist"
+  "version": "3.0.0",
+  "description": "express-api-bootstrap makes it easy to create stand-alone, production-grade express based API servers that you can \"just run\"",
+  "main": "./bin/index.js",
+  "bin": {
+    "boot": "./bin/index.js"
   },
-  "files": [
-    "src"
-  ],
-  "engines": {
-    "node": ">=10.0"
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "scripts": {
+    "test": "jest",
+    "coverage": "cat ./coverage/lcov.info | coveralls",
+    "build": "rollup -c",
+    "prepublish": "rm -rf ./bin && yarn build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/leftstick/express-api-bootstrap.git"
   },
-  "author": "",
+  "keywords": [
+    "express",
+    "api",
+    "bootstrap"
+  ],
+  "files": [
+    "bin",
+    "types"
+  ],
+  "author": "Howard.Zuo",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/leftstick/express-api-bootstrap/issues"
   },
   "homepage": "https://github.com/leftstick/express-api-bootstrap#readme",
-  "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.17.3",
-    "express": "^4.17.1",
-    "gh-pages": "^2.0.1",
-    "vuepress": "^1.0.1"
-  },
-  "peerDependencies": {
-    "express": ">=4.0.0"
-  },
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "chalk": "^2.4.2",
-    "cookie-parser": "^1.4.4",
-    "glob": "^7.1.4",
-    "parse-comments": "^1.0.0",
-    "safe-reaper": "^1.1.0"
+    "@babel/register": "^7.7.0",
+    "@babel/preset-typescript": "^7.7.2",
+    "babel-preset-umi": "^1.8.1",
+    "chalk": "^3.0.0",
+    "commander": "^4.0.0",
+    "typedi": "^0.8.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@types/jest": "^24.0.22",
+    "@types/node": "^12.12.7",
+    "coveralls": "^3.0.7",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "rollup": "^1.26.3",
+    "rollup-plugin-auto-external": "^2.0.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-typescript2": "^0.25.2",
+    "tsconfig-paths": "^3.9.0",
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.1",
+    "tslint-microsoft-contrib": "^6.2.0",
+    "typescript": "^3.7.2"
   }
 }

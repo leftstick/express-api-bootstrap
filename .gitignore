@@ -1,11 +1,11 @@
-# npm
-node_modules
-package-lock.json
-yarn.lock
+# npm, yarn
+node_modules/
+yarn-error.log
 
 # osx
 .DS_Store
 
 # dist
-
-dist/
+bin/
+coverage/
+.bootrc.ts

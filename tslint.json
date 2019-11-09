@@ -1,0 +1,14 @@
+{
+  "extends": ["tslint-microsoft-contrib/recommended"],
+  "rulesDirectory": ["node_modules/tslint-microsoft-contrib"],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "rules": {
+    "export-name": false,
+    "non-literal-fs-path": false,
+    "function-name": false,
+    "import-name": false
+  },
+  "linterOptions": {
+    "exclude": ["test/fixtures/**"]
+  }
+}
