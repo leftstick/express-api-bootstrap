@@ -8,4 +8,6 @@ yarn-error.log
 # dist
 bin/
 coverage/
-.bootrc.ts
+/types/
+/src/types/generates/
+/src/types/index.ts

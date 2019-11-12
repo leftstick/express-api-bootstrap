@@ -5,7 +5,7 @@ import autoExternal from 'rollup-plugin-auto-external'
 import pkg from './package.json'
 
 export default {
-  input: 'src/index.ts', // our source file
+  input: 'src/cli.ts',
   output: [
     {
       file: pkg.main,

@@ -6,9 +6,10 @@
     "export-name": false,
     "non-literal-fs-path": false,
     "function-name": false,
-    "import-name": false
+    "import-name": false,
+    "no-backbone-get-set-outside-model": false
   },
   "linterOptions": {
-    "exclude": ["test/fixtures/**"]
+    "exclude": ["src/types/generates/**", "src/types/index.ts", "test/fixtures/**"]
   }
 }

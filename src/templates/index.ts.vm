@@ -1,0 +1,3 @@
+<% typePaths.forEach(function(fp, index) { %>
+export * from '<%= fp %>'
+<% }) %>

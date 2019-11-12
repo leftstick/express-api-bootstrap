@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "strictNullChecks": true,
     "esModuleInterop": true,
     "importHelpers": true,
     "sourceMap": true,
@@ -15,8 +16,10 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
+    "declaration": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "express-api-bootstrap": ["."]
     }
   },
   "include": ["src", "test"],
