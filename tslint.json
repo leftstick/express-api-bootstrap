@@ -7,7 +7,8 @@
     "non-literal-fs-path": false,
     "function-name": false,
     "import-name": false,
-    "no-backbone-get-set-outside-model": false
+    "no-backbone-get-set-outside-model": false,
+    "no-http-string": false
   },
   "linterOptions": {
     "exclude": ["src/types/generates/**", "src/types/index.ts", "test/fixtures/**"]

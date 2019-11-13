@@ -1,3 +1,13 @@
-<% typePaths.forEach(function(fp, index) { %>
-export * from '<%= fp %>'
+<% pluginPaths.forEach(function(fp, index) { %>import { IPluginType as __<%= index %> } from '<%= fp %>'
 <% }) %>
+
+interface Bootrc {
+  plugins?: IPluginDef[]
+}
+
+interface IPluginDef {
+  name: string
+  options: any
+}
+
+export type IBootConfig = Bootrc & <%= pluginPaths.map((fp, index) => '__' + index).join(' &') %>

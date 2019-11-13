@@ -2,6 +2,6 @@ import '@/src/core/babel/registerBabel'
 
 import { join } from 'path'
 
-import { getUserConfig } from '@/src/core/config/reader'
+import { getRawUserConfig } from '@/src/core/env/userConfigReader'
 
-console.log('config', getUserConfig())
+console.log('config', getRawUserConfig())
