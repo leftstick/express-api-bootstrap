@@ -1,21 +1,15 @@
-import { join } from 'path'
-
-import { cwd } from '@/src/core/env'
-
 require('@babel/register')({
   presets: [
     require.resolve('@babel/preset-typescript'),
     [
       require.resolve('babel-preset-umi'),
       {
-        env: { targets: { node: 8 } },
+        env: { targets: { node: 10 } },
         transformRuntime: false
       }
     ]
   ],
-  ignore: [/node_modules/],
-  only: [join(cwd(), '.bootrc.ts')],
-  extensions: ['.ts'],
+  extensions: ['.ts', '.js'],
   babelrc: false,
   cache: false
 })

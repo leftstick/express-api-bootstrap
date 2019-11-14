@@ -3,15 +3,11 @@ const tsconfig = require('../tsconfig.json')
 const { inputOpts, outputOpts } = require('./common.rollup.config')
 
 module.exports.inputOpts = {
-  ...inputOpts({
-    ...tsconfig,
-    compilerOptions: { ...tsconfig.compilerOptions, declaration: false }
-  }),
-  input: 'src/cli.ts'
+  ...inputOpts(tsconfig),
+  input: 'src/index.ts'
 }
 
 module.exports.outputOpts = {
   ...outputOpts,
-  file: 'bin/index.js',
-  banner: '#!/usr/bin/env node'
+  file: pkg.main
 }

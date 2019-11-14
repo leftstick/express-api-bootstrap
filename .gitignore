@@ -9,3 +9,5 @@ yarn-error.log
 bin/
 coverage/
 /types/
+libs/src
+.tscache/

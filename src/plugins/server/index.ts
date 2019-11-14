@@ -2,14 +2,14 @@ import express from 'express'
 import signale from 'signale'
 import os from 'os'
 import { isEmpty } from '@/src/core/helper/object'
-import { PluginOrderEnum } from '@/src/core/app/lifecycle'
+import { InternalPluginOrderEnum } from '@/src/core/env/lifecycle'
 import { IPluginType } from '@/src/plugins/server/type'
 import { IPlugin } from '@/src/plugins/plugin'
 
 export default () => {
   return <IPlugin>{
     namespace: 'server',
-    order: PluginOrderEnum.FINAL_STAGE,
+    order: InternalPluginOrderEnum.FINAL_STAGE,
     configHandler(config: IPluginType): IPluginType {
       if (isEmpty(config) || isEmpty(config.server)) {
         return {
@@ -30,13 +30,18 @@ export default () => {
         signale.error('No server config found')
         return
       }
+
       const { port } = config.server
 
-      app.listen(port, '0.0.0.0', () => {
-        signale.success('App running at:')
+      return new Promise(resolve => {
+        app.listen(port, '0.0.0.0', () => {
+          const addresses = getIpAddresses()
+          signale.success(`App running at below link${addresses.length > 1 ? 's' : ''}:`)
 
-        getIpAddresses().forEach(ip => {
-          signale.info(`http://${ip}:${port}`)
+          addresses.forEach(ip => {
+            signale.info(`http://${ip}:${port}`)
+            resolve()
+          })
         })
       })
     }

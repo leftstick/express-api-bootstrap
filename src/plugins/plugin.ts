@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { PluginOrderEnum } from '@/src/core/app/lifecycle'
+import { PluginOrderEnum, InternalPluginOrderEnum } from '@/src/core/env/lifecycle'
 
 export interface IPluginFactory {
   (opts: any): IPlugin
@@ -8,7 +8,7 @@ export interface IPluginFactory {
 
 export interface IPlugin {
   namespace: string
-  order: PluginOrderEnum
+  order: PluginOrderEnum & InternalPluginOrderEnum
   configHandler<T>(config: T): T
-  pluginHandler<T>(app: express.Express, config: T): any
+  pluginHandler<T>(app: express.Express, config: T): Promise<void> | undefined
 }

@@ -1,6 +1,6 @@
 import express from 'express'
 import { isEmpty } from '@/src/core/helper/object'
-import { PluginOrderEnum } from '@/src/core/app/lifecycle'
+import { PluginOrderEnum } from '@/src/core/env/lifecycle'
 import { IPluginType } from '@/src/plugins/cors/type'
 import { IPlugin } from '@/src/plugins/plugin'
 
