@@ -22,7 +22,6 @@ const internalPlugins = [cors(), server()]
 
 export function getExternalPlugins() {
   const factories = getExternalPluginFactories()
-  console.log('factories', factories)
   return factories.map(factory => {
     return factory.module(factory.options)
   })
@@ -84,6 +83,9 @@ async function execPlugins(order: PluginOrderEnum | InternalPluginOrderEnum, app
 }
 
 export const pluginRunner = {
+  async firstStage(app: express.Express): Promise<void> {
+    return execPlugins(InternalPluginOrderEnum.FIRST_STAGE, app)
+  },
   async beforeApiInit(app: express.Express): Promise<void> {
     return execPlugins(PluginOrderEnum.BEFORE_API_INIT, app)
   },

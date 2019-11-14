@@ -21,7 +21,7 @@
     "test": "jest",
     "coverage": "cat ./coverage/lcov.info | coveralls",
     "build": "node build",
-    "prepublish": "rm -rf ./bin && yarn build",
+    "prepublish": "yarn build",
     "postinstall": "node libs/gen"
   },
   "repository": {

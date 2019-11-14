@@ -8,7 +8,7 @@ export interface IPluginFactory {
 
 export interface IPlugin {
   namespace: string
-  order: PluginOrderEnum & InternalPluginOrderEnum
+  order: PluginOrderEnum | InternalPluginOrderEnum
   configHandler<T>(config: T): T
   pluginHandler<T>(app: express.Express, config: T): Promise<void> | undefined
 }

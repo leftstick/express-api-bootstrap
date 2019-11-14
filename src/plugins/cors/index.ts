@@ -1,13 +1,13 @@
 import express from 'express'
 import { isEmpty } from '@/src/core/helper/object'
-import { PluginOrderEnum } from '@/src/core/env/lifecycle'
+import { PluginOrderEnum, InternalPluginOrderEnum } from '@/src/core/env/lifecycle'
 import { IPluginType } from '@/src/plugins/cors/type'
 import { IPlugin } from '@/src/plugins/plugin'
 
 export default () => {
   return <IPlugin>{
     namespace: 'cors',
-    order: PluginOrderEnum.BEFORE_API_INIT,
+    order: InternalPluginOrderEnum.FIRST_STAGE,
     configHandler(config: IPluginType): IPluginType {
       if (isEmpty(config) || isEmpty(config.cors)) {
         return {
