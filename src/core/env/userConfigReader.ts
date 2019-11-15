@@ -1,4 +1,3 @@
-import '@/src/core/env/registerBabel'
 import signale from 'signale'
 
 import { join } from 'path'

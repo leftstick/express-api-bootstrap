@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "description": "express-api-bootstrap makes it easy to create stand-alone, production-grade express based API servers that you can \"just run\"",
   "main": "./libs/index.js",
-  "typings": "libs/src/index.d.ts",
+  "typings": "./libs/src/index.d.ts",
   "bin": {
     "boot": "./bin/index.js"
   },
@@ -59,6 +59,7 @@
     "glob": "^7.1.6",
     "lodash.template": "^4.5.0",
     "signale": "^1.4.0",
+    "tslib": "^1.10.0",
     "typedi": "^0.8.0",
     "typescript": "^3.7.2",
     "update-notifier": "^3.0.1"

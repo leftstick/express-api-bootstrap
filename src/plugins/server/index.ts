@@ -41,7 +41,6 @@ export default () => {
       }
 
       const { port, staticDir } = config.server
-      console.log('staticDir', staticDir)
 
       if (isString(staticDir)) {
         app.use(express.static(staticDir))
