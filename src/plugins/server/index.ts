@@ -4,9 +4,8 @@ import os from 'os'
 import path from 'path'
 import { cwd } from '@/src/core/env'
 import { isEmpty, isString } from '@/src/core/helper/object'
-import { InternalPluginOrderEnum } from '@/src/core/env/lifecycle'
+import { InternalPluginOrderEnum, IPlugin } from '@/src/core/plugin/pluginType'
 import { IPluginType } from '@/src/plugins/server/type'
-import { IPlugin } from '@/src/plugins/plugin'
 
 export default () => {
   return <IPlugin>{

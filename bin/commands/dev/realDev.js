@@ -1,9 +1,10 @@
-import '@/src/core/env/registerBabelDev'
-import { Container } from 'typedi'
-import express from 'express'
+require('../../helper/registerBabelDev')
+const { Container } = require('typedi')
+const express = require('express')
 
-import { pluginRunner } from '@/src/plugins'
-import { ExpressToken } from '@/src/plugins/api/rest'
+const { ___internal } = require('../../../libs')
+
+const { pluginRunner, ExpressToken } = ___internal
 
 const app = express()
 

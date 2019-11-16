@@ -2,13 +2,13 @@ import express from 'express'
 import signale from 'signale'
 import { join } from 'path'
 
-import { PluginOrderEnum, InternalPluginOrderEnum } from '@/src/core/env/lifecycle'
+import { PluginOrderEnum, InternalPluginOrderEnum } from '@/src/core/plugin/pluginType'
 import { cwd } from '@/src/core/env'
 import { isArray, isEmpty } from '@/src/core/helper/object'
 import cors from '@/src/plugins/cors'
 import api from '@/src/plugins/api'
 import server from '@/src/plugins/server'
-import { IPlugin } from '@/src/plugins/plugin'
+import { IPlugin } from '@/src/core/plugin/pluginType'
 import { getRawUserConfig } from '@/src/core/env/userConfigReader'
 
 const rawConfig = getRawUserConfig()

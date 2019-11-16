@@ -2,10 +2,9 @@ import express from 'express'
 import glob from 'glob'
 import { resolve } from 'path'
 import { isEmpty, isNotEmpty } from '@/src/core/helper/object'
-import { PluginOrderEnum } from '@/src/core/env/lifecycle'
-import { IPluginType } from '@/src/plugins/api/type'
-import { IPlugin } from '@/src/plugins/plugin'
+import { PluginOrderEnum, IPlugin } from '@/src/core/plugin/pluginType'
 import { getProjectBaseRoot } from '@/src/core/env'
+import { IPluginType } from '@/src/plugins/api/type'
 import { BizError } from '@/src/plugins/api/type'
 
 const defaultSuccessResponseResolver = (data: any) => {
@@ -62,14 +61,7 @@ export default () => {
         absolute: true
       })
 
-      const entry = resolve(__dirname, '..', 'libs', 'index.js')
-      return import(entry)
-        .then(entry => {
-          entry.setExpressApp(app)
-        })
-        .then(() => {
-          return Promise.all(controllerFiles.map(f => import(f)))
-        })
+      return Promise.all(controllerFiles.map(f => import(f)))
     }
   }
 }

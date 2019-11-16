@@ -1,6 +1,5 @@
+#!/usr/bin/env node
 'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
@@ -23,20 +22,171 @@ function _interopNamespace(e) {
   }
 }
 
+var program = _interopDefault(require('commander'));
+var updater = _interopDefault(require('update-notifier'));
+var typedi = require('typedi');
+var express = _interopDefault(require('express'));
 var tslib = require('tslib');
 var signale = _interopDefault(require('signale'));
 var path = require('path');
 var path__default = _interopDefault(path);
 var glob = _interopDefault(require('glob'));
-var express = _interopDefault(require('express'));
 var os = _interopDefault(require('os'));
-var typedi = require('typedi');
 
+var name = "express-api-bootstrap";
+var version = "3.0.0";
+var description = "express-api-bootstrap makes it easy to create stand-alone, production-grade express based API servers that you can \"just run\"";
+var main = "./libs/index.js";
+var typings = "./libs/src/index.d.ts";
+var bin = {
+	boot: "./bin/index.js"
+};
+var husky = {
+	hooks: {
+		"commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+	}
+};
+var commitlint = {
+	"extends": [
+		"@commitlint/config-conventional"
+	]
+};
+var scripts = {
+	test: "jest",
+	coverage: "cat ./coverage/lcov.info | coveralls",
+	build: "node build",
+	prepublish: "yarn build",
+	postinstall: "node libs/gen"
+};
+var repository = {
+	type: "git",
+	url: "git+https://github.com/leftstick/express-api-bootstrap.git"
+};
+var keywords = [
+	"express",
+	"api",
+	"bootstrap"
+];
+var files = [
+	"bin",
+	"types",
+	"libs",
+	"src"
+];
+var engines = {
+	node: ">=10"
+};
+var author = "Howard.Zuo";
+var license = "MIT";
+var bugs = {
+	url: "https://github.com/leftstick/express-api-bootstrap/issues"
+};
+var homepage = "https://github.com/leftstick/express-api-bootstrap#readme";
+var dependencies = {
+	"@babel/preset-typescript": "^7.7.2",
+	"@babel/register": "^7.7.0",
+	"@zerollup/ts-transform-paths": "^1.7.6",
+	"babel-preset-umi": "^1.8.1",
+	commander: "^4.0.1",
+	del: "^5.1.0",
+	express: "^4.17.1",
+	glob: "^7.1.6",
+	"lodash.template": "^4.5.0",
+	signale: "^1.4.0",
+	tslib: "^1.10.0",
+	typedi: "^0.8.0",
+	typescript: "^3.7.2",
+	"update-notifier": "^3.0.1"
+};
+var devDependencies = {
+	"@commitlint/cli": "^8.2.0",
+	"@commitlint/config-conventional": "^8.2.0",
+	"@rollup/plugin-json": "^4.0.0",
+	"@types/express": "^4.17.2",
+	"@types/jest": "^24.0.23",
+	"@types/node": "^12.12.8",
+	"@types/signale": "^1.2.1",
+	"@types/update-notifier": "^2.5.0",
+	coveralls: "^3.0.7",
+	husky: "^3.0.9",
+	jest: "^24.9.0",
+	rollup: "^1.27.0",
+	"rollup-plugin-auto-external": "^2.0.0",
+	"rollup-plugin-typescript2": "^0.25.2",
+	"ts-jest": "^24.1.0",
+	"tsconfig-paths": "^3.9.0",
+	tslint: "^5.20.1",
+	"tslint-microsoft-contrib": "^6.2.0"
+};
+var pkg = {
+	name: name,
+	version: version,
+	description: description,
+	main: main,
+	typings: typings,
+	bin: bin,
+	husky: husky,
+	commitlint: commitlint,
+	scripts: scripts,
+	repository: repository,
+	keywords: keywords,
+	files: files,
+	engines: engines,
+	author: author,
+	license: license,
+	bugs: bugs,
+	homepage: homepage,
+	dependencies: dependencies,
+	devDependencies: devDependencies
+};
+
+var dev = {
+    cmd: 'dev',
+    description: 'Launch application in debug mode',
+    action() {
+        process.env.NODE_ENV = 'development';
+        Promise.resolve().then(function () { return realDev; });
+    }
+};
+
+var commands = [dev];
+
+// Notify update when process exits
+updater({ pkg }).notify({ defer: true });
+commands.forEach(cmd => {
+    program
+        .command(cmd.cmd)
+        .description(cmd.description)
+        .action(cmd.action);
+});
+program.parse(process.argv);
+
+require('@babel/register')({
+    presets: [
+        require.resolve('@babel/preset-typescript'),
+        [
+            require.resolve('babel-preset-umi'),
+            {
+                env: { targets: { node: 10 } },
+                transformRuntime: false
+            }
+        ]
+    ],
+    extensions: ['.ts', '.js'],
+    babelrc: false,
+    cache: false
+});
+
+var LifecycleEnum;
+(function (LifecycleEnum) {
+    LifecycleEnum["PROCESS_SHUTDOWN"] = "PROCESS_SHUTDOWN";
+})(LifecycleEnum || (LifecycleEnum = {}));
+var PluginOrderEnum;
 (function (PluginOrderEnum) {
     PluginOrderEnum["BEFORE_API_INIT"] = "BEFORE_API_INIT";
     PluginOrderEnum["API_INIT"] = "API_INIT";
     PluginOrderEnum["AFTER_API_INIT"] = "AFTER_API_INIT";
-})(exports.PluginOrderEnum || (exports.PluginOrderEnum = {}));
+})(PluginOrderEnum || (PluginOrderEnum = {}));
 var InternalPluginOrderEnum;
 (function (InternalPluginOrderEnum) {
     InternalPluginOrderEnum["FIRST_STAGE"] = "FIRST_STAGE";
@@ -113,7 +263,7 @@ const defaultFailureResponseResolver = (error) => {
 var api = () => {
     return {
         namespace: 'api',
-        order: exports.PluginOrderEnum.API_INIT,
+        order: PluginOrderEnum.API_INIT,
         configHandler(config) {
             const conf = {
                 api: {
@@ -145,7 +295,14 @@ var api = () => {
                 cwd: config.api.scanDir,
                 absolute: true
             });
-            return Promise.all(controllerFiles.map(f => new Promise(function (resolve) { resolve(_interopNamespace(require(f))); })));
+            const entry = path.resolve(__dirname, '..', 'libs', 'index.js');
+            return new Promise(function (resolve) { resolve(_interopNamespace(require(entry))); })
+                .then(entry => {
+                entry.setExpressApp(app);
+            })
+                .then(() => {
+                return Promise.all(controllerFiles.map(f => new Promise(function (resolve) { resolve(_interopNamespace(require(f))); })));
+            });
         }
     };
 };
@@ -277,17 +434,17 @@ const pluginRunner = {
     },
     beforeApiInit(app) {
         return tslib.__awaiter(this, void 0, void 0, function* () {
-            return execPlugins(exports.PluginOrderEnum.BEFORE_API_INIT, app);
+            return execPlugins(PluginOrderEnum.BEFORE_API_INIT, app);
         });
     },
     apiInit(app) {
         return tslib.__awaiter(this, void 0, void 0, function* () {
-            return execPlugins(exports.PluginOrderEnum.API_INIT, app);
+            return execPlugins(PluginOrderEnum.API_INIT, app);
         });
     },
     afterApiInit(app) {
         return tslib.__awaiter(this, void 0, void 0, function* () {
-            return execPlugins(exports.PluginOrderEnum.AFTER_API_INIT, app);
+            return execPlugins(PluginOrderEnum.AFTER_API_INIT, app);
         });
     },
     lastStage(app) {
@@ -297,68 +454,26 @@ const pluginRunner = {
     }
 };
 
-const PATH_SETS = {
-    get: new Set(),
-    post: new Set(),
-    delete: new Set(),
-    update: new Set(),
-    patch: new Set()
-};
 const ExpressToken = new typedi.Token('global.express');
 const RestControllerToken = new typedi.Token('controllers');
-function setExpressApp(app) {
-    typedi.Container.set(ExpressToken, app);
-}
-function RestController() {
-    return (target) => {
-        return typedi.Service({ id: RestControllerToken, multiple: true })(target);
-    };
-}
-function GetMapping(path) {
-    return execMapping(path, 'get');
-}
-function PostMapping(path) {
-    return execMapping(path, 'post');
-}
-function DeleteMapping(path) {
-    return execMapping(path, 'delete');
-}
-function UpdateMapping(path) {
-    return execMapping(path, 'update');
-}
-function PatchMapping(path) {
-    return execMapping(path, 'patch');
-}
-function execMapping(path, httpMethod) {
-    return (target, propertyKey, descriptor) => {
-        if (PATH_SETS[httpMethod].has(path)) {
-            signale.error(`${httpMethod} ${path} was registered multiple times, please verify your code first`);
-        }
-        const app = typedi.Container.get(ExpressToken);
-        app[httpMethod](path, (req, res) => tslib.__awaiter(this, void 0, void 0, function* () {
-            const { successResponseResolver, failureResponseResolver } = userConfig.api;
-            try {
-                const result = yield target[propertyKey](req, res);
-                res.json(successResponseResolver(result));
-            }
-            catch (error) {
-                res.json(failureResponseResolver(error));
-            }
-        }));
-    };
-}
 
-const ___internal = {
-    pluginRunner,
-    setExpressApp,
-    ExpressToken
-};
+const app = express();
+typedi.Container.set(ExpressToken, app);
+pluginRunner
+    .firstStage(app)
+    .then(() => {
+    return pluginRunner.beforeApiInit(app);
+})
+    .then(() => {
+    return pluginRunner.apiInit(app);
+})
+    .then(() => {
+    return pluginRunner.afterApiInit(app);
+})
+    .then(() => {
+    pluginRunner.lastStage(app);
+});
 
-exports.DeleteMapping = DeleteMapping;
-exports.GetMapping = GetMapping;
-exports.PatchMapping = PatchMapping;
-exports.PostMapping = PostMapping;
-exports.RestController = RestController;
-exports.UpdateMapping = UpdateMapping;
-exports.___internal = ___internal;
-exports.setExpressApp = setExpressApp;
+var realDev = /*#__PURE__*/Object.freeze({
+  __proto__: null
+});

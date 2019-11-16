@@ -1,8 +1,7 @@
 import express from 'express'
 import { isEmpty } from '@/src/core/helper/object'
-import { PluginOrderEnum, InternalPluginOrderEnum } from '@/src/core/env/lifecycle'
+import { InternalPluginOrderEnum, IPlugin } from '@/src/core/plugin/pluginType'
 import { IPluginType } from '@/src/plugins/cors/type'
-import { IPlugin } from '@/src/plugins/plugin'
 
 export default () => {
   return <IPlugin>{

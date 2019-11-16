@@ -1,7 +1,7 @@
 import express from 'express'
 import signale from 'signale'
 import { Token, Service, Container } from 'typedi'
-import { userConfig } from '@/src/plugins'
+import { userConfig } from '@/src/core/plugin'
 
 const PATH_SETS = {
   get: new Set(),
