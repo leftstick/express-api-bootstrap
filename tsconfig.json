@@ -10,7 +10,7 @@
     "experimentalDecorators": true,
     "module": "ESNext",
     "noImplicitAny": true,
-    "outDir": "./bin",
+    "outDir": "./libs",
     "target": "es2015",
     "resolveJsonModule": true,
     "moduleResolution": "node",

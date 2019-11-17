@@ -8,5 +8,6 @@ yarn-error.log
 # dist
 coverage/
 /types/
-libs/src
+libs/
+!libs/gen
 .tscache/

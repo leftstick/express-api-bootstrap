@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "description": "express-api-bootstrap makes it easy to create stand-alone, production-grade express based API servers that you can \"just run\"",
   "main": "./libs/index.js",
-  "typings": "./libs/src/index.d.ts",
+  "typings": "./libs/index.d.ts",
   "bin": {
     "boot": "./bin/index.js"
   },

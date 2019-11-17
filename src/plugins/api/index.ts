@@ -60,7 +60,6 @@ export default () => {
         cwd: config.api.scanDir,
         absolute: true
       })
-
       return Promise.all(controllerFiles.map(f => import(f)))
     }
   }
