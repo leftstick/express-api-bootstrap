@@ -1,4 +1,5 @@
 import express from 'express'
+import { Service, Container, Token, Inject } from 'typedi'
 import { pluginRunner } from '@/src/core/plugin'
 import { IPlugin, IPluginFactory, PluginOrderEnum } from '@/src/core/plugin/pluginType'
 import {
@@ -13,6 +14,7 @@ import {
 } from '@/src/plugins/api/rest'
 import { ProcessSingle } from '@/src/core/env'
 
+export { Service, Container, Token, Inject }
 export { IPlugin, IPluginFactory, PluginOrderEnum }
 export { RestController, GetMapping, PostMapping, DeleteMapping, UpdateMapping, PatchMapping }
 
