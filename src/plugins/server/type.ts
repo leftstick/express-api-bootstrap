@@ -1,4 +1,7 @@
 export interface IPluginType {
+  /**
+   * server configuration
+   */
   server?: IServerConfig
 }
 

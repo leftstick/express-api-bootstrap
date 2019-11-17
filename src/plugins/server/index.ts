@@ -56,7 +56,7 @@ export default () => {
           signale.success(`App running at below link${addresses.length > 1 ? 's' : ''}:`)
 
           addresses.forEach(ip => {
-            signale.info(`http://${ip}:${port}`)
+            signale.info(`http://${ip}:${port}${config['api']['prefix']}`)
             resolve()
           })
         })

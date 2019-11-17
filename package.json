@@ -53,6 +53,7 @@
     "@babel/register": "^7.7.0",
     "@zerollup/ts-transform-paths": "^1.7.6",
     "babel-preset-umi": "^1.8.1",
+    "chokidar": "^3.3.0",
     "commander": "^4.0.1",
     "del": "^5.1.0",
     "express": "^4.17.1",

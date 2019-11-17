@@ -10,12 +10,6 @@ require('@babel/register')({
     ]
   ],
   extensions: ['.ts', '.js'],
-  ignore: [
-    function(filepath) {
-      // console.log(filepath)
-      return false
-    }
-  ],
   babelrc: false,
   cache: false
 })

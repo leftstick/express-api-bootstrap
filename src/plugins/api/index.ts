@@ -39,14 +39,14 @@ export default () => {
         return conf
       }
 
-      if (isNotEmpty(config.api.prefix) && isNotEmpty(conf.api)) {
+      if (isNotEmpty(conf.api) && isNotEmpty(config.api.prefix)) {
         conf.api.prefix = config.api.prefix
       }
 
-      if (isNotEmpty(config.api.successResponseResolver) && isNotEmpty(conf.api)) {
+      if (isNotEmpty(conf.api) && isNotEmpty(config.api.successResponseResolver)) {
         conf.api.successResponseResolver = config.api.successResponseResolver
       }
-      if (isNotEmpty(config.api.failureResponseResolver) && isNotEmpty(conf.api)) {
+      if (isNotEmpty(conf.api) && isNotEmpty(config.api.failureResponseResolver)) {
         conf.api.failureResponseResolver = config.api.failureResponseResolver
       }
 

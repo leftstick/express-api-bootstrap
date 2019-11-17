@@ -21,12 +21,13 @@ export const ProcessCtrl = {
       type: ProcessSingle.STOP
     })
   },
-  restart() {
+  restart(msg: string) {
     if (isEmpty(process.send)) {
       return
     }
     process.send({
-      type: ProcessSingle.RESTART
+      type: ProcessSingle.RESTART,
+      data: msg
     })
   }
 }

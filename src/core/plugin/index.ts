@@ -5,9 +5,12 @@ import { join } from 'path'
 import { PluginOrderEnum, InternalPluginOrderEnum } from '@/src/core/plugin/pluginType'
 import { cwd, ProcessCtrl } from '@/src/core/env'
 import { isArray, isEmpty } from '@/src/core/helper/object'
+
 import cors from '@/src/plugins/cors'
 import api from '@/src/plugins/api'
 import server from '@/src/plugins/server'
+import watcher from '@/src/plugins/watcher'
+
 import { IPlugin } from '@/src/core/plugin/pluginType'
 import { getRawUserConfig } from '@/src/core/env/userConfigReader'
 
@@ -18,7 +21,7 @@ interface IPluginDef {
   options: any
 }
 
-const internalPlugins = [cors(), api(), server()]
+const internalPlugins = [cors(), watcher(), api(), server()]
 
 export function getExternalPlugins() {
   const factories = getExternalPluginFactories()
