@@ -2,6 +2,8 @@ import express from 'express'
 import signale from 'signale'
 import { Token, Service, Container } from 'typedi'
 import { userConfig } from '@/src/core/plugin'
+import { ProcessCtrl } from '@/src/core/env'
+import { urlJoin } from '@/src/core/helper/object'
 
 const PATH_SETS = {
   get: new Set(),
@@ -52,12 +54,12 @@ function execMapping(path: string, httpMethod: HTTP_METHOD) {
   return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
     if (PATH_SETS[httpMethod].has(path)) {
       signale.error(`${httpMethod} ${path} was registered multiple times, please verify your code first`)
+      ProcessCtrl.stop()
     }
 
     const app = Container.get(ExpressToken)
-    app[httpMethod](path, async (req: express.Request, res: express.Response) => {
-      const { successResponseResolver, failureResponseResolver } = userConfig.api
-
+    const { successResponseResolver, failureResponseResolver, prefix } = userConfig.api
+    app[httpMethod](urlJoin(prefix, path), async (req: express.Request, res: express.Response) => {
       try {
         const result = await target[propertyKey](req, res)
         res.json(successResponseResolver(result))

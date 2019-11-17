@@ -17,3 +17,11 @@ export function isPromise<T>(obj: any): obj is Promise<T> {
 export function isArray<T>(obj: any | undefined | null): obj is T[] {
   return isNotEmpty(obj) && Array.isArray(obj)
 }
+
+export function urlJoin(...urls: string[]) {
+  return ['/', ...urls]
+    .join('/')
+    .replace(/\/+/g, '/')
+    .replace(/.*http:\/*/, 'http://')
+    .replace(/.*https:\/*/, 'https://')
+}

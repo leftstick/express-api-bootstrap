@@ -2,7 +2,7 @@ import express from 'express'
 import signale from 'signale'
 import os from 'os'
 import path from 'path'
-import { cwd } from '@/src/core/env'
+import { cwd, ProcessCtrl } from '@/src/core/env'
 import { isEmpty, isString } from '@/src/core/helper/object'
 import { InternalPluginOrderEnum, IPlugin } from '@/src/core/plugin/pluginType'
 import { IPluginType } from '@/src/plugins/server/type'
@@ -46,7 +46,12 @@ export default () => {
       }
 
       return new Promise(resolve => {
-        app.listen(port, '0.0.0.0', () => {
+        app.listen(port, '0.0.0.0', err => {
+          if (err) {
+            signale.error(err)
+            ProcessCtrl.stop()
+            return
+          }
           const addresses = getIpAddresses()
           signale.success(`App running at below link${addresses.length > 1 ? 's' : ''}:`)
 

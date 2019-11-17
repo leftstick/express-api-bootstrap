@@ -3,7 +3,7 @@ import signale from 'signale'
 import { join } from 'path'
 
 import { PluginOrderEnum, InternalPluginOrderEnum } from '@/src/core/plugin/pluginType'
-import { cwd } from '@/src/core/env'
+import { cwd, ProcessCtrl } from '@/src/core/env'
 import { isArray, isEmpty } from '@/src/core/helper/object'
 import cors from '@/src/plugins/cors'
 import api from '@/src/plugins/api'
@@ -34,7 +34,7 @@ export function getExternalPluginFactories() {
 
   if (hasIncorrectPlugin(rawConfig.plugins)) {
     signale.error('incorrect plugin configured')
-    // stop process
+    ProcessCtrl.stop()
     return []
   }
 

@@ -10,6 +10,7 @@ export function getRawUserConfig(): { [index: string]: any } {
     const mod = require(join(cwd(), '.bootrc.ts'))
     return mod.default || mod
   } catch (error) {
+    console.log('error', error)
     signale.warn('.bootrc.ts not found, preset config used')
     return {}
   }
