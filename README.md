@@ -1,4 +1,4 @@
-# umi-locale-doctor
+# express-api-bootstrap
 
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
@@ -8,45 +8,69 @@
 [![code style: prettier][prettier-image]][prettier-url]
 ![][license-url]
 
-A useful tool to analyze [umi locale usage](https://umijs.org/api/#locale):
+`express-api-bootstrap` makes it easy to create stand-alone, production-grade [express](https://expressjs.com/) based Applications that you can "just run".
 
-- keys are miss defined in locales
-- keys are never used in source code
+## Features
 
-See below:
-
-![](./docs/demo.gif)
+- Possible to create API server with zore configuration
+- [typescript](http://www.typescriptlang.org/) working experience
+- Damn easy plugin system
+- [Spring MVC](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html) like API interface
 
 ## Install
 
 ```bash
-yarn global add umi-locale-doctor
+yarn add express-api-bootstrap
 ```
 
 ## Usage
 
-Execute `udoctor` at the root dir of your `umi` based repo.
+Add below config to your `package.json`
 
 ```bash
-udoctor
+{
+  "scripts": {
+    "start": "boot dev",
+    "build": "boot build",
+    "serve": "boot serve"
+  }
+}
 ```
+
+Create the first controller at `src/controllers/helloController.ts` with following code:
+
+```typescript
+import { HttpRequest, RestController, GetMapping } from 'express-api-bootstrap'
+
+@RestController()
+export default class HelloControler {
+  @GetMapping('/hello')
+  async sayHello(req: HttpRequest) {
+    return {
+      hi: req.query.name
+    }
+  }
+}
+```
+
+Run `yarn start` to, and you will see the first API at [http://localhost:8080/apis/hello](http://localhost:8080/apis/hello)
 
 ## Want to contribute?
 
-see [contributing](https://github.com/umijs/umi-locale-doctor/blob/master/CONTRIBUTING.md)
+see [contributing](https://github.com/leftstick/express-api-bootstrap/blob/master/CONTRIBUTING.md)
 
 ## LICENSE
 
-[MIT License](https://raw.githubusercontent.com/umijs/umi-locale-doctor/master/LICENSE)
+[MIT License](https://raw.githubusercontent.com/leftstick/express-api-bootstrap/master/LICENSE)
 
-[npm-url]: https://npmjs.org/package/umi-locale-doctor
-[npm-image]: https://badge.fury.io/js/umi-locale-doctor.png
-[david-url]: https://david-dm.org/umijs/umi-locale-doctor.png
-[travis-image]: https://www.travis-ci.org/umijs/umi-locale-doctor.svg?branch=master
-[travis-url]: https://travis-ci.com/umijs/umi-locale-doctor
-[coverage-image]: https://coveralls.io/repos/github/umijs/umi-locale-doctor/badge.svg?branch=master
-[coverage-url]: https://coveralls.io/github/umijs/umi-locale-doctor
-[dt-url]: https://img.shields.io/npm/dt/umi-locale-doctor.svg
-[license-url]: https://img.shields.io/github/license/umijs/umi-locale-doctor
+[npm-url]: https://npmjs.org/package/express-api-bootstrap
+[npm-image]: https://badge.fury.io/js/express-api-bootstrap.png
+[david-url]: https://david-dm.org/leftstick/express-api-bootstrap.png
+[travis-image]: https://www.travis-ci.org/leftstick/express-api-bootstrap.svg?branch=master
+[travis-url]: https://travis-ci.com/leftstick/express-api-bootstrap
+[coverage-image]: https://coveralls.io/repos/github/leftstick/express-api-bootstrap/badge.svg?branch=master
+[coverage-url]: https://coveralls.io/github/leftstick/express-api-bootstrap
+[dt-url]: https://img.shields.io/npm/dt/express-api-bootstrap.svg
+[license-url]: https://img.shields.io/github/license/leftstick/express-api-bootstrap
 [prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg
 [prettier-url]: https://github.com/prettier/prettier
