@@ -11,12 +11,12 @@ module.exports.GEN_TYPES_DIR = GEN_TYPES_DIR
 
 module.exports.ensureNewDir = function(dir) {
   if (existsSync(dir)) {
-    del.sync(dir)
+    del.sync(dir, { force: true })
   }
   mkdirSync(dir)
 }
 
-module.exports.genEntry = function(pluginPaths) {
+module.exports.genEntry = function(internalPluginPaths, externalPluginPaths) {
   const entryTypeSrc = resolve(ROOT_DIR, 'src', 'templates', 'index.ts.vm')
   const entryTypeDest = resolve(ROOT_DIR, 'types', 'index.ts')
 
@@ -25,7 +25,7 @@ module.exports.genEntry = function(pluginPaths) {
   const compiled = template(entryTypeContent)
 
   const result = compiled({
-    pluginPaths
+    pluginPaths: [...internalPluginPaths, ...externalPluginPaths]
   })
 
   writeFileSync(entryTypeDest, result, { encoding: 'utf8' })

@@ -10,4 +10,4 @@ interface IPluginDef {
   options: any
 }
 
-export type IBootConfig = Bootrc & <%= pluginPaths.map((fp, index) => '__' + index).join(' &') %>
+export type IBootConfig = Bootrc & <%= pluginPaths.map((fp, index) => '__' + index).join(' & ') %>
