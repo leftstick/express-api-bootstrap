@@ -4,14 +4,8 @@ const { createMatchPath } = require('tsconfig-paths')
 
 const cwd = process.cwd()
 const tsConfig = require(join(cwd, 'tsconfig.json'))
+const finalPaths = getTsPaths()
 
-const paths = tsConfig.compilerOptions.paths
-const finalPaths = {}
-if (paths) {
-  Object.keys(paths).forEach(key => {
-    finalPaths[key.replace(/src/g, 'dist')] = paths[key].map(pp => pp.replace(/src/g, 'dist'))
-  })
-}
 const matchPath = createMatchPath(join(cwd, tsConfig.compilerOptions.baseUrl || '.'), finalPaths)
 
 module.exports = function() {
@@ -58,4 +52,15 @@ function tryResolveRelativeFilePath(sourcePath, importModulePath) {
     join(sourceDir, importModulePath, 'index.js'),
     join(sourceDir, importModulePath)
   ].find(f => fs.existsSync(f))
+}
+
+function getTsPaths() {
+  const paths = tsConfig.compilerOptions.paths
+  const finalPaths = {}
+  if (paths) {
+    Object.keys(paths).forEach(key => {
+      finalPaths[key.replace(/src/g, 'dist')] = paths[key].map(pp => pp.replace(/src/g, 'dist'))
+    })
+  }
+  return finalPaths
 }

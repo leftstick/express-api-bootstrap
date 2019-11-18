@@ -1,4 +1,5 @@
 const signale = require('signale')
+const ora = require('ora')
 const del = require('del')
 const exec = require('child_process').exec
 const { resolve } = require('path')
@@ -8,6 +9,7 @@ module.exports = {
   cmd: 'build',
   description: 'Build source code',
   action() {
+    const compiling = ora('Compiling source').start()
     const cwd = process.cwd()
     const distDir = resolve(cwd, 'dist')
     if (existsSync(distDir)) {
@@ -18,11 +20,11 @@ module.exports = {
       {
         cwd: process.cwd()
       },
-      err => {
+      (err, stdout, sdterr) => {
         if (err) {
-          return signale.error(err)
+          return compiling.fail(stdout)
         }
-        signale.success('source compiled at dist/')
+        compiling.succeed('source compiled at dist/')
       }
     )
   }
