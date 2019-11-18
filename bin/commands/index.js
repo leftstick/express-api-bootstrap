@@ -1,3 +1,4 @@
 const dev = require('./dev')
+const init = require('./init')
 
-module.exports = [dev]
+module.exports = [dev, init]

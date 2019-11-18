@@ -9,5 +9,4 @@ yarn-error.log
 coverage/
 /types/
 libs/
-!libs/gen
 .tscache/
