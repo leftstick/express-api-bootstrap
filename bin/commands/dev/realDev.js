@@ -1,5 +1,5 @@
 process.env.NODE_ENV = 'development'
-require('../../helper/registerBabelDev')
+require('./registerBabelDev')
 
 const { Container } = require('typedi')
 const express = require('express')

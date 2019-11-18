@@ -74,6 +74,7 @@ function execMapping(path: string, httpMethod: HTTP_METHOD) {
         const result = await instance[propertyKey](req, res)
         res.json(successResponseResolver(result))
       } catch (error) {
+        signale.error(error)
         res.json(failureResponseResolver(error))
       }
     })

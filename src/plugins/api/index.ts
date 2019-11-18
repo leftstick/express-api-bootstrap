@@ -55,7 +55,8 @@ export default () => {
       if (isEmpty(config.api)) {
         return
       }
-      const controllerFiles = glob.sync('**/*.ts', {
+      const ext = process.env.NODE_ENV === 'development' ? '.ts' : '.js'
+      const controllerFiles = glob.sync(`**/*${ext}`, {
         cwd: config.api.scanDir,
         absolute: true
       })
