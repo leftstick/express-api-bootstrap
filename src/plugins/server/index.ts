@@ -9,7 +9,6 @@ import { IPluginType } from '@/src/plugins/server/type'
 
 export default () => {
   return <IPlugin>{
-    namespace: 'server',
     order: InternalPluginOrderEnum.FINAL_STAGE,
     configHandler(config: IPluginType): IPluginType {
       if (isEmpty(config) || isEmpty(config.server)) {

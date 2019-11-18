@@ -23,7 +23,6 @@ const defaultFailureResponseResolver = (error: BizError) => {
 
 export default () => {
   return <IPlugin>{
-    namespace: 'api',
     order: PluginOrderEnum.API_INIT,
     configHandler(config: IPluginType): IPluginType {
       const conf: IPluginType = {

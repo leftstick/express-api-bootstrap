@@ -5,7 +5,6 @@ import { IPluginType } from '@/src/plugins/cors/type'
 
 export default () => {
   return <IPlugin>{
-    namespace: 'cors',
     order: InternalPluginOrderEnum.FIRST_STAGE,
     configHandler(config: IPluginType): IPluginType {
       if (isEmpty(config) || isEmpty(config.cors)) {

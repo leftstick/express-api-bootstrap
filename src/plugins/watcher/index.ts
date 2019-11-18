@@ -8,7 +8,6 @@ import { IPluginType } from '@/src/plugins/cors/type'
 
 export default () => {
   return <IPlugin>{
-    namespace: 'watcher',
     order: PluginOrderEnum.BEFORE_API_INIT,
     configHandler(config: IPluginType): IPluginType {
       return config
