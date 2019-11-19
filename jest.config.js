@@ -5,7 +5,7 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
-  testPathIgnorePatterns: ['node_modules', 'bin', 'build', 'libs', 'types', 'test/fixtures'],
+  testMatch: ['**/*.test.ts'],
   collectCoverageFrom: ['src/**/*.{js,ts}'],
   setupFiles: ['./test/helpers.ts']
 }
