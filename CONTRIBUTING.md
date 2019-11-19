@@ -31,7 +31,7 @@ yarn build --watch
 yarn test
 
 # Test specified file and watch
-yarn test cal.test.ts
+yarn test object.test.ts
 
 # with code coverage
 yarn test --coverage
@@ -40,5 +40,5 @@ yarn test --coverage
 ### debug test
 
 - open repo via `vscode`
-- open test case, for example: `test/helpers/cal.test.ts`
+- open test case, for example: `test/core/helpers/object.test.ts`
 - hit `F5` to start debug this specific test
