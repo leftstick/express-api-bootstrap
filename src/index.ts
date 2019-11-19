@@ -9,6 +9,7 @@ import {
   DeleteMapping,
   UpdateMapping,
   PatchMapping,
+  Query,
   setExpressApp,
   ExpressToken
 } from '@/src/plugins/api/rest'
@@ -16,7 +17,7 @@ import { ProcessSingle } from '@/src/core/env'
 
 export { Service, Container, Token, Inject }
 export { IPlugin, IPluginFactory, PluginOrderEnum }
-export { RestController, GetMapping, PostMapping, DeleteMapping, UpdateMapping, PatchMapping }
+export { RestController, GetMapping, PostMapping, DeleteMapping, UpdateMapping, PatchMapping, Query }
 
 export type HttpRequest = express.Request
 export type HttpResponse = express.Response

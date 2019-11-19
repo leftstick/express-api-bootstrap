@@ -1,6 +1,6 @@
 process.env.NODE_ENV = 'development'
-require('./registerBabelDev')
-
+require('../../../build/babel/registerBabel')()
+require('reflect-metadata')
 const { Container } = require('typedi')
 const express = require('express')
 const { ___internal } = require('../../../libs')

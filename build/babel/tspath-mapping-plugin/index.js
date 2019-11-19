@@ -20,9 +20,10 @@ module.exports = function() {
               if (isNodeModules(arg.value)) {
                 return
               }
-              const matched = matchPath(arg.value, undefined, undefined, ['.js'])
+              const matched = matchPath(arg.value, undefined, undefined, ['.js', '.ts'])
               if (matched) {
                 const matchedPath = tryPaths(matched)
+                console.log('matchedPath', matchedPath)
                 if (matchedPath) {
                   arg.value = matchedPath
                   return
@@ -42,20 +43,31 @@ function isNodeModules(filePath) {
 }
 
 function tryPaths(filePath) {
-  return [`${filePath}.js`, join(filePath, 'index.js'), filePath].find(f => fs.existsSync(f))
+  return [
+    `${filePath}.js`,
+    `${filePath}.ts`,
+    join(filePath, 'index.js'),
+    join(filePath, 'index.ts'),
+    filePath
+  ].find(f => fs.existsSync(f))
 }
 
 function tryResolveRelativeFilePath(sourcePath, importModulePath) {
   const sourceDir = dirname(sourcePath)
   return [
     join(sourceDir, `${importModulePath}.js`),
+    join(sourceDir, `${importModulePath}.ts`),
     join(sourceDir, importModulePath, 'index.js'),
+    join(sourceDir, importModulePath, 'index.ts'),
     join(sourceDir, importModulePath)
   ].find(f => fs.existsSync(f))
 }
 
 function getTsPaths() {
   const paths = tsConfig.compilerOptions.paths
+  if (process.env.NODE_ENV === 'development') {
+    return paths
+  }
   const finalPaths = {}
   if (paths) {
     Object.keys(paths).forEach(key => {

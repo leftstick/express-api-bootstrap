@@ -13,7 +13,15 @@ const PATH_SETS = {
   patch: new Set()
 }
 
+type IParameterHandler = { (req: express.Request): any } | undefined | null
+
+interface IParameterInjector {
+  [method: string]: IParameterHandler[]
+}
+
 const INSTANCES = new Map()
+
+const HANDLER_PARAMETER_INJECTORS = new Map<any, IParameterInjector>()
 
 export interface IRestController {}
 
@@ -60,6 +68,37 @@ function execMapping(path: string, httpMethod: HTTP_METHOD) {
       ProcessCtrl.stop()
     }
 
+    const originalMethod = descriptor.value
+
+    descriptor.value = function(req: express.Request, res: express.Response) {
+      const injector = HANDLER_PARAMETER_INJECTORS.get(target)
+      if (isEmpty(injector)) {
+        return originalMethod.apply(this, [req, res])
+      }
+      const handlers = injector[propertyKey]
+
+      if (isEmpty(handlers)) {
+        return originalMethod.apply(this, [req, res])
+      }
+
+      const finalArgs: any[] = []
+
+      handlers.forEach((handler, i) => {
+        if (isEmpty(handler)) {
+          if (i === 0) {
+            return finalArgs.push(req)
+          }
+          if (i === 1) {
+            return finalArgs.push(res)
+          }
+          // no valid handler found
+          return finalArgs.push(null)
+        }
+        finalArgs.push(handler(req))
+      })
+      return originalMethod.apply(this, finalArgs)
+    }
+
     const app = Container.get(ExpressToken)
     const { successResponseResolver, failureResponseResolver, prefix } = userConfig.api
 
@@ -78,5 +117,26 @@ function execMapping(path: string, httpMethod: HTTP_METHOD) {
         res.json(failureResponseResolver(error))
       }
     })
+
+    return descriptor
+  }
+}
+
+export function Query() {
+  return (target: any, methodName: string, paramIndex: number) => {
+    let injector = HANDLER_PARAMETER_INJECTORS.get(target)
+    if (isEmpty(injector)) {
+      injector = {}
+      HANDLER_PARAMETER_INJECTORS.set(target, injector)
+    }
+    if (isEmpty(injector[methodName])) {
+      // tslint:disable-next-line: prefer-array-literal
+      injector[methodName] = new Array(target[methodName].length)
+      injector[methodName].fill(null)
+    }
+
+    injector[methodName][paramIndex] = (req: express.Request) => {
+      return req.query
+    }
   }
 }

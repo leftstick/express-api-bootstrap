@@ -1,6 +1,6 @@
 process.env.NODE_ENV = 'production'
 const signale = require('signale')
-const { resolve } = require('path')
+const { resolve, join } = require('path')
 const { existsSync } = require('fs')
 const { Container } = require('typedi')
 const express = require('express')
@@ -14,7 +14,19 @@ module.exports = {
       return signale.error("tsconfig.json doesn't exist, please use `boot init` first")
     }
     require('reflect-metadata')
-    require('./registerBabelProd')
+    require('../../../build/babel/registerBabel')({
+      only: [
+        filePath => {
+          if (filePath === join(cwd, '.bootrc.ts')) {
+            return true
+          }
+          if (filePath.startsWith(join(cwd, 'dist'))) {
+            return true
+          }
+          return filePath.includes('express-api-bootstrap/types')
+        }
+      ]
+    })
     const { ___internal } = require('../../../libs')
 
     const distDir = resolve(cwd, 'dist')
