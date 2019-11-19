@@ -13,13 +13,13 @@ const PATH_SETS = {
   patch: new Set()
 }
 
-type IParameterHandler = { (req: express.Request): any } | undefined | null
+type IParameterHandler = { (req: express.Request, res: express.Response): any } | undefined | null
 
 interface IParameterInjector {
   [method: string]: IParameterHandler[]
 }
 
-const INSTANCES = new Map()
+const CONTROLLER_INSTANCES = new Map<any, any>()
 
 const HANDLER_PARAMETER_INJECTORS = new Map<any, IParameterInjector>()
 
@@ -39,28 +39,28 @@ export function RestController() {
 }
 
 export function GetMapping(path: string) {
-  return execMapping(path, 'get')
+  return createMapping(path, 'get')
 }
 
 export function PostMapping(path: string) {
-  return execMapping(path, 'post')
+  return createMapping(path, 'post')
 }
 
 export function DeleteMapping(path: string) {
-  return execMapping(path, 'delete')
+  return createMapping(path, 'delete')
 }
 
 export function UpdateMapping(path: string) {
-  return execMapping(path, 'update')
+  return createMapping(path, 'update')
 }
 
 export function PatchMapping(path: string) {
-  return execMapping(path, 'patch')
+  return createMapping(path, 'patch')
 }
 
 type HTTP_METHOD = 'get' | 'post' | 'delete' | 'update' | 'patch'
 
-function execMapping(path: string, httpMethod: HTTP_METHOD) {
+function createMapping(path: string, httpMethod: HTTP_METHOD) {
   // tslint:disable-next-line: no-function-expression
   return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     if (PATH_SETS[httpMethod].has(path)) {
@@ -68,62 +68,73 @@ function execMapping(path: string, httpMethod: HTTP_METHOD) {
       ProcessCtrl.stop()
     }
 
-    const originalMethod = descriptor.value
+    injectParameterDecorator(target, propertyKey, descriptor)
 
-    descriptor.value = function(req: express.Request, res: express.Response) {
-      const injector = HANDLER_PARAMETER_INJECTORS.get(target)
-      if (isEmpty(injector)) {
-        return originalMethod.apply(this, [req, res])
-      }
-      const handlers = injector[propertyKey]
-
-      if (isEmpty(handlers)) {
-        return originalMethod.apply(this, [req, res])
-      }
-
-      const finalArgs: any[] = []
-
-      handlers.forEach((handler, i) => {
-        if (isEmpty(handler)) {
-          if (i === 0) {
-            return finalArgs.push(req)
-          }
-          if (i === 1) {
-            return finalArgs.push(res)
-          }
-          // no valid handler found
-          return finalArgs.push(null)
-        }
-        finalArgs.push(handler(req))
-      })
-      return originalMethod.apply(this, finalArgs)
-    }
-
-    const app = Container.get(ExpressToken)
-    const { successResponseResolver, failureResponseResolver, prefix } = userConfig.api
-
-    app[httpMethod](urlJoin(prefix, path), async (req: express.Request, res: express.Response) => {
-      try {
-        let instance = INSTANCES.get(target)
-        if (isEmpty(instance)) {
-          instance = Container.getMany(RestControllerToken).find(c => Object.getPrototypeOf(c) === target)
-          INSTANCES.set(target, instance)
-        }
-
-        const result = await instance[propertyKey](req, res)
-        res.json(successResponseResolver(result))
-      } catch (error) {
-        signale.error(error)
-        res.json(failureResponseResolver(error))
-      }
-    })
+    registerAPI(target, propertyKey, path, httpMethod)
 
     return descriptor
   }
 }
 
-export function Query() {
-  return (target: any, methodName: string, paramIndex: number) => {
+function injectParameterDecorator(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+  const originalMethod = descriptor.value
+
+  descriptor.value = function(req: express.Request, res: express.Response) {
+    const injector = HANDLER_PARAMETER_INJECTORS.get(target)
+    if (isEmpty(injector)) {
+      return originalMethod.apply(this, [req, res])
+    }
+    const handlers = injector[propertyKey]
+
+    if (isEmpty(handlers)) {
+      return originalMethod.apply(this, [req, res])
+    }
+
+    const finalArgs: any[] = []
+
+    handlers.forEach((handler, i) => {
+      if (isEmpty(handler)) {
+        if (i === 0) {
+          return finalArgs.push(req)
+        }
+        if (i === 1) {
+          return finalArgs.push(res)
+        }
+        // no valid handler found
+        return finalArgs.push(null)
+      }
+      finalArgs.push(handler(req, res))
+    })
+    return originalMethod.apply(this, finalArgs)
+  }
+
+  return descriptor
+}
+
+function registerAPI(target: any, propertyKey: string, path: string, httpMethod: HTTP_METHOD) {
+  const app = Container.get(ExpressToken)
+  const { successResponseResolver, failureResponseResolver, prefix } = userConfig.api
+
+  app[httpMethod](urlJoin(prefix, path), async (req: express.Request, res: express.Response) => {
+    try {
+      let instance = CONTROLLER_INSTANCES.get(target)
+      if (isEmpty(instance)) {
+        instance = Container.getMany(RestControllerToken).find(c => Object.getPrototypeOf(c) === target)
+        CONTROLLER_INSTANCES.set(target, instance)
+      }
+
+      const result = await instance[propertyKey](req, res)
+      res.json(successResponseResolver(result))
+    } catch (error) {
+      signale.error(error)
+      res.json(failureResponseResolver(error))
+    }
+  })
+}
+
+function createParameterDecorator(handler: { (req: express.Request, res: express.Response): any }) {
+  // tslint:disable-next-line: no-function-expression
+  return function(target: any, methodName: string, paramIndex: number) {
     let injector = HANDLER_PARAMETER_INJECTORS.get(target)
     if (isEmpty(injector)) {
       injector = {}
@@ -135,8 +146,26 @@ export function Query() {
       injector[methodName].fill(null)
     }
 
-    injector[methodName][paramIndex] = (req: express.Request) => {
-      return req.query
-    }
+    injector[methodName][paramIndex] = handler
   }
+}
+
+export function RequestQuery() {
+  return createParameterDecorator((req: express.Request) => req.query)
+}
+
+export function RequestBody() {
+  return createParameterDecorator((req: express.Request) => req.body)
+}
+
+export function RequestPathVariable() {
+  return createParameterDecorator((req: express.Request) => req.params)
+}
+
+export function Request() {
+  return createParameterDecorator((req: express.Request) => req)
+}
+
+export function Response() {
+  return createParameterDecorator((req: express.Request, res: express.Response) => res)
 }

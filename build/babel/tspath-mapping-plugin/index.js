@@ -23,7 +23,6 @@ module.exports = function() {
               const matched = matchPath(arg.value, undefined, undefined, ['.js', '.ts'])
               if (matched) {
                 const matchedPath = tryPaths(matched)
-                console.log('matchedPath', matchedPath)
                 if (matchedPath) {
                   arg.value = matchedPath
                   return
