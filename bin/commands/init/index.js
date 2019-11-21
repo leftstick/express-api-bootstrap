@@ -6,6 +6,7 @@ const { readFileSync, existsSync, copyFileSync } = require('fs')
 module.exports = {
   cmd: 'init',
   description: 'Init repo with required stuff',
+  options: [],
   action() {
     const userProvidedTsConfigPath = resolve(process.cwd(), 'tsconfig.json')
     const requiredTsConfigPath = resolve(__dirname, 'tsconfig.json.vm')

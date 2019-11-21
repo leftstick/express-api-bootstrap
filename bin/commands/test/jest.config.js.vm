@@ -7,5 +7,5 @@ module.exports = {
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
   testMatch: ['<rootDir>/test/**/*.test.ts'],
   collectCoverageFrom: ['src/**/*.{js,ts}'],
-  setupFiles: ['./test/helpers.ts']
+  setupFiles: []
 }

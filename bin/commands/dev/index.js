@@ -52,6 +52,7 @@ function start(scriptPath) {
 module.exports = {
   cmd: 'dev',
   description: 'Launch application in debug mode',
+  options: [],
   action() {
     start(require.resolve('./realDev'))
   }

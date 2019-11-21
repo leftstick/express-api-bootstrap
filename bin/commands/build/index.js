@@ -8,6 +8,7 @@ const { existsSync, copyFileSync } = require('fs')
 module.exports = {
   cmd: 'build',
   description: 'Build source code',
+  options: [],
   action() {
     const compiling = ora('Compiling source').start()
     const cwd = process.cwd()

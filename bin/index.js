@@ -10,10 +10,15 @@ const commands = require('./commands')
 updater({ pkg }).notify({ defer: true })
 
 commands.forEach(cmd => {
-  program
+  const oneCommand = program
     .command(cmd.cmd)
     .description(cmd.description)
     .action(cmd.action)
+  if (cmd.options) {
+    cmd.options.forEach(o => {
+      oneCommand.option(o.flags, o.description, o.defaultValue)
+    })
+  }
 })
 
 program.parse(process.argv)

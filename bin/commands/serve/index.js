@@ -9,6 +9,7 @@ const cwd = process.cwd()
 module.exports = {
   cmd: 'serve',
   description: 'Launch server from generated code',
+  options: [],
   action() {
     if (!existsSync(resolve(cwd, 'tsconfig.json'))) {
       return signale.error("tsconfig.json doesn't exist, please use `boot init` first")
