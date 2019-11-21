@@ -1,12 +1,13 @@
 const { resolve, join } = require('path')
 const { existsSync } = require('fs')
+
 require('../babel/registerBabel')({
   extensions: ['.ts'],
-  only: [resolve(process.env.INIT_CWD, '.bootrc.ts')]
+  only: [resolve(process.env.INIT_CWD || process.cwd(), '.bootrc.ts')]
 })
 
 module.exports.retrieveExternalPluginPaths = function() {
-  const cwd = process.env.INIT_CWD
+  const cwd = process.env.INIT_CWD || process.cwd()
 
   let rawConfig = null
   try {

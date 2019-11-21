@@ -65,6 +65,7 @@
     "del": "^5.1.0",
     "express": "^4.17.1",
     "glob": "^7.1.6",
+    "json-diff": "^0.5.4",
     "lodash.template": "^4.5.0",
     "ora": "^4.0.3",
     "reflect-metadata": "^0.1.13",
