@@ -32,7 +32,8 @@ Add below config to your `package.json`
   "scripts": {
     "start": "boot dev",
     "build": "boot build",
-    "serve": "boot serve"
+    "serve": "boot serve",
+    "test": "boot test"
   }
 }
 ```
@@ -43,7 +44,7 @@ Create the first controller at `src/controllers/helloController.ts` with followi
 import { HttpRequest, RestController, GetMapping } from 'express-api-bootstrap'
 
 @RestController()
-export default class HelloControler {
+class HelloControler {
   @GetMapping('/hello')
   async sayHello(req: HttpRequest) {
     return {
@@ -51,6 +52,8 @@ export default class HelloControler {
     }
   }
 }
+
+export default HelloControler
 ```
 
 Run `yarn start` to, and you will see the first API at [http://localhost:8080/apis/hello](http://localhost:8080/apis/hello)
