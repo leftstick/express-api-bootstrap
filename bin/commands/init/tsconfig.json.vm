@@ -15,7 +15,7 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "skipLibCheck": false,
-    "sourceMap": false,
+    "sourceMap": true,
     "declaration": true,
     "paths": {
       "@/*": ["./*"]

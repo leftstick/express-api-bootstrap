@@ -1,5 +1,6 @@
 const del = require('del')
 const template = require('lodash.template')
+const signale = require('signale')
 const { resolve } = require('path')
 const { existsSync, mkdirSync, readFileSync, writeFileSync } = require('fs')
 
@@ -29,5 +30,5 @@ module.exports.genEntry = function(internalPluginPaths, externalPluginPaths) {
   })
 
   writeFileSync(entryTypeDest, result, { encoding: 'utf8' })
-  console.log('types/index.ts generated')
+  signale.info('express-api-bootstrap/types/index.ts generated')
 }
