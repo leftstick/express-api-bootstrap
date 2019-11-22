@@ -1,12 +1,12 @@
 const signale = require('signale')
-const spawn = require('child_process').spawn
+const exec = require('child_process').exec
 const { resolve } = require('path')
 const { existsSync, copyFileSync } = require('fs')
 
 const cwd = process.cwd()
 
 module.exports = {
-  cmd: 'test',
+  cmd: 'test [regexForTestFiles]',
   description: 'Execute unit tests in your test/ folder',
   options: [
     {
@@ -15,7 +15,7 @@ module.exports = {
       defaultValue: false
     }
   ],
-  action(cmd) {
+  action(regexForTestFiles, cmd) {
     const testDir = resolve(cwd, 'test')
     if (!existsSync(testDir)) {
       return signale.warn('test folder not exist')
@@ -34,8 +34,7 @@ module.exports = {
       copyFileSync(resolve(__dirname, 'jest.config.js.vm'), userProvidedJestConfig)
       signale.success('jest.config.js generated')
     }
-
-    const childProcess = spawn('npx', ['jest', `--coverage`, '--color'], {
+    const childProcess = exec(`npx jest ${regexForTestFiles || ''} ${cmd.coverage ? '--coverage' : ''} --color`, {
       cwd
     })
     childProcess.stdout.pipe(process.stdin)

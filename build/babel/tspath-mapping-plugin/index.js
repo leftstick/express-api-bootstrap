@@ -1,6 +1,7 @@
 const fs = require('fs')
 const { join, dirname } = require('path')
 const { createMatchPath } = require('tsconfig-paths')
+const { builtinModules } = require('module')
 
 const cwd = process.cwd()
 const tsConfig = require(join(cwd, 'tsconfig.json'))
@@ -17,6 +18,11 @@ module.exports = function() {
             const sourcePath = state.file.opts.filename
 
             path.node.arguments.forEach(arg => {
+              // node builtin modules
+              if (builtinModules.includes(arg.value)) {
+                return
+              }
+              // modules installed in node_modules
               if (isNodeModules(arg.value)) {
                 return
               }

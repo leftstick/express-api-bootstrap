@@ -3,9 +3,18 @@
   "version": "3.0.0",
   "description": "express-api-bootstrap makes it easy to create stand-alone, production-grade express based API servers that you can \"just run\"",
   "main": "./libs/index.js",
-  "typings": "./libs/index.d.ts",
+  "typings": "./libs/src/index.d.ts",
   "bin": {
     "boot": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "jest",
+    "coverage": "cat ./coverage/lcov.info | coveralls",
+    "build": "node build",
+    "prepare": "yarn build",
+    "postinstall": "node build/generator",
+    "docs:dev": "vuepress dev docs",
+    "docs:deploy": "vuepress build docs && gh-pages -d docs/.vuepress/dist"
   },
   "husky": {
     "hooks": {
@@ -16,13 +25,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "scripts": {
-    "test": "jest",
-    "coverage": "cat ./coverage/lcov.info | coveralls",
-    "build": "node build",
-    "prepare": "yarn build",
-    "postinstall": "node build/generator"
   },
   "repository": {
     "type": "git",
@@ -51,9 +53,9 @@
   "homepage": "https://github.com/leftstick/express-api-bootstrap#readme",
   "peerDependencies": {
     "@types/jest": "^24.0.23",
-    "tslib": "^1.10.0",
     "jest": "^24.9.0",
     "ts-jest": "^24.1.0",
+    "tslib": "^1.10.0",
     "typescript": "^3.7.2"
   },
   "dependencies": {
@@ -87,6 +89,7 @@
     "@types/signale": "^1.2.1",
     "@types/update-notifier": "^2.5.0",
     "coveralls": "^3.0.7",
+    "gh-pages": "^2.1.1",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
     "rollup": "^1.27.0",
@@ -97,6 +100,7 @@
     "tslib": "^1.10.0",
     "tslint": "^5.20.1",
     "tslint-microsoft-contrib": "^6.2.0",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.2",
+    "vuepress": "^1.2.0"
   }
 }

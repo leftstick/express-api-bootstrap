@@ -1,4 +1,18 @@
-# express-api-bootstrap
+---
+home: true
+heroText: express-api-bootstrap
+tagline: 超快速创建API服务
+actionText: 快速开始 →
+actionLink: /zh/guide/
+features:
+  - title: 简明
+    details: API不多，复杂度不高。任何你看到的API，都能得到你理解的内容。 完善的类型系统还可以依托于vscode给您提供良好的编程体验
+  - title: 约定
+    details: 所有配置都是可选的。只想关注业务逻辑，快速开发原型服务，不再是梦
+  - title: 完整
+    details: 开发模式下可自动按需编译; 发布模式编译; 轻松调试; 轻松编写测试用例;
+footer: MIT Licensed | Copyright © 2019-present Howard.Zuo
+---
 
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
@@ -8,29 +22,31 @@
 [![code style: prettier][prettier-image]][prettier-url]
 ![][license-url]
 
-`express-api-bootstrap` makes it easy to create stand-alone, production-grade [express](https://expressjs.com/) based Applications that you can `just run`.
+`express-api-bootstrap` 受启发于[springboot](https://spring.io/projects/spring-boot/)，基于[express](https://expressjs.com/)实现。使开发 API service 更轻松。你要做的，就是关注业务，然后运行。剩下的，我们为您搞定
 
-## Quick Start
+## 安装
+
+### 环境搭建
 
 ```bash
-# create a new directory for your app
+# 创建新项目目录
 mkdir test-boot-app
 cd test-boot-app
 
-# Generate package.json without any question
+# 无交互模式生成一个基本的package.json
 npm init -y
 
-# add required dependencies
+# 添加依赖
 yarn add express-api-bootstrap tslib typescript
 yarn add @types/jest @types/node jest ts-jest --dev
 
-# init express-api-bootstrap required env
+# 初始化 express-api-bootstrap 所需环境
 npx boot init
 ```
 
-Open and modify `package.json` with following section:
+打开 `package.json`，添加/修改如下片段：
 
-```json
+```bash
 {
   "scripts": {
     "start": "boot dev",
@@ -41,7 +57,7 @@ Open and modify `package.json` with following section:
 }
 ```
 
-Create the first controller at `src/controllers/helloController.ts` with following code:
+创建文件： `src/controllers/helloController.ts`，编写如下内容：
 
 ```typescript
 import { HttpRequest, RestController, GetMapping } from 'express-api-bootstrap'
@@ -49,9 +65,9 @@ import { HttpRequest, RestController, GetMapping } from 'express-api-bootstrap'
 @RestController()
 class HelloControler {
   @GetMapping('/hello')
-  async sayHello(req: HttpRequest) {
+  sayHello(req: HttpRequest) {
     return {
-      hi: req.query.name
+      say: `Hi, ${req.query.name}`
     }
   }
 }
@@ -59,11 +75,11 @@ class HelloControler {
 export default HelloControler
 ```
 
-Run `yarn start` to, and you will see the first API at [http://localhost:8080/apis/hello](http://localhost:8080/apis/hello)
+执行 `yarn start` ，然后你的第一个 API [http://localhost:8080/apis/hello](http://localhost:8080/apis/hello) 就完成了
 
-## Want to contribute?
+## 如何贡献？
 
-see [contributing](https://github.com/leftstick/express-api-bootstrap/blob/master/CONTRIBUTING.md)
+看 [贡献代码](/zh/guide#contribute)
 
 ## LICENSE
 

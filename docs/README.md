@@ -1,4 +1,18 @@
-# express-api-bootstrap
+---
+home: true
+heroText: express-api-bootstrap
+tagline: Create API service extremely fast
+actionText: Quick Start →
+actionLink: /guide/
+features:
+  - title: Straightforward
+    details: Less api, less complexity. Everything you see is what you get. Code intelliSense powered by ts & vscode
+  - title: Conventional
+    details: Configuration is optional. Just coding for your business logic is not a dream
+  - title: Completed
+    details: Reload on demand in dev mode; Production mode compilation; Debuggable; Testable;
+footer: MIT Licensed | Copyright © 2019-present Howard.Zuo
+---
 
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
@@ -11,6 +25,8 @@
 `express-api-bootstrap` makes it easy to create stand-alone, production-grade [express](https://expressjs.com/) based Applications that you can `just run`.
 
 ## Quick Start
+
+### Setup Environment
 
 ```bash
 # create a new directory for your app
@@ -49,9 +65,9 @@ import { HttpRequest, RestController, GetMapping } from 'express-api-bootstrap'
 @RestController()
 class HelloControler {
   @GetMapping('/hello')
-  async sayHello(req: HttpRequest) {
+  sayHello(req: HttpRequest) {
     return {
-      hi: req.query.name
+      say: `Hi, ${req.query.name}`
     }
   }
 }
@@ -63,7 +79,7 @@ Run `yarn start` to, and you will see the first API at [http://localhost:8080/ap
 
 ## Want to contribute?
 
-see [contributing](https://github.com/leftstick/express-api-bootstrap/blob/master/CONTRIBUTING.md)
+see [contributing](/guide#contribute)
 
 ## LICENSE
 

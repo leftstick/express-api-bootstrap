@@ -18,8 +18,7 @@
     "sourceMap": false,
     "declaration": true,
     "paths": {
-      "@/*": ["./*"],
-      "express-api-bootstrap": ["."]
+      "@/*": ["./*"]
     }
   },
   "include": ["src", "test"],

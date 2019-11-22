@@ -6,6 +6,7 @@ yarn-error.log
 .DS_Store
 
 # dist
+docs/.vuepress/dist/
 coverage/
 /types/
 libs/

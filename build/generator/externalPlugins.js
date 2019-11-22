@@ -21,12 +21,11 @@ module.exports.retrieveExternalPluginPaths = function() {
   }
   const config = rawConfig.default || rawConfig
 
-  const plugins = config.plugins.filter(plugin => plugin && plugin.name)
+  const plugins = (config.plugins || []).filter(plugin => plugin && plugin.name)
 
-  return [
-    ...plugins.map(plugin => join(cwd, plugin.name, 'type.ts')),
-    ...plugins.map(plugin => join(cwd, 'node_modules', plugin.name, 'type.ts'))
-  ]
+  return plugins
+    .map(plugin => join(cwd, plugin.name, 'type.ts'))
+    .concat(plugins.map(plugin => join(cwd, 'node_modules', plugin.name, 'type.ts')))
     .filter(pluginPath => existsSync(pluginPath))
     .map(pluginPath => pluginPath.replace('.ts', ''))
 }

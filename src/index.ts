@@ -17,6 +17,7 @@ import {
   setExpressApp,
   ExpressToken
 } from '@/src/plugins/api/rest'
+import { BizError } from '@/src/plugins/api/type'
 import { ProcessSingle } from '@/src/core/env'
 
 export { Service, Container, Token, Inject }
@@ -32,7 +33,8 @@ export {
   RequestBody,
   RequestPathVariable,
   Request,
-  Response
+  Response,
+  BizError
 }
 
 export type HttpRequest = express.Request
