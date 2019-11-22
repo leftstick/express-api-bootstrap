@@ -28,7 +28,11 @@ module.exports = {
           }
         },
         algolia: {},
-        nav: [{ text: 'Guide', link: '/guide/', ariaLabel: 'Guide' }],
+        nav: [
+          { text: 'Guide', link: '/guide/', ariaLabel: 'Guide' },
+          { text: 'Configuration', link: '/config/', ariaLabel: 'Config' },
+          { text: 'API', link: '/api/', ariaLabel: 'API' }
+        ],
         sidebar: {
           '/guide/': [
             {
@@ -41,12 +45,66 @@ module.exports = {
               collapsable: false,
               children: ['unit-test', 'production']
             }
+          ],
+          '/config/': [
+            {
+              title: 'Configuration',
+              collapsable: false,
+              children: ['']
+            }
+          ],
+          '/api/': [
+            {
+              title: 'API',
+              collapsable: false,
+              children: ['']
+            }
           ]
         }
       },
       '/zh/': {
         selectText: '选择语言',
-        label: '简体中文'
+        label: '简体中文',
+        serviceWorker: {
+          updatePopup: {
+            message: '内容有更新',
+            buttonText: '刷新'
+          }
+        },
+        algolia: {},
+        nav: [
+          { text: '指南', link: '/zh/guide/', ariaLabel: 'Guide' },
+          { text: '配置', link: '/zh/config/', ariaLabel: 'Config' },
+          { text: 'API', link: '/zh/api/', ariaLabel: 'API' }
+        ],
+        sidebar: {
+          '/zh/guide/': [
+            {
+              title: '指南',
+              collapsable: false,
+              children: ['', 'directory-and-convention', 'configuration', 'debug']
+            },
+            {
+              title: '进阶',
+              collapsable: false,
+              children: ['unit-test', 'production']
+            }
+          ],
+          '/zh/config/': [
+            {
+              title: '配置',
+              collapsable: false,
+              children: ['']
+            }
+          ],
+          '/zh/api/': [
+            {
+              title: 'API',
+              collapsable: false,
+              children: ['']
+            }
+          ]
+        }
       }
     }
   }

@@ -36,5 +36,5 @@ interface IApiConfig {
    *
    * Should be used for customized failure response structure
    */
-  failureResponseResolver?: (error?: Error) => any
+  failureResponseResolver?: (error?: BizError) => any
 }
