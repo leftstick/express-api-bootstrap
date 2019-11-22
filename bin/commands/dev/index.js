@@ -28,8 +28,6 @@ function start(scriptPath) {
     )
   }
 
-  console.log('execArgv', execArgv)
-
   const child = fork(scriptPath, process.argv.slice(2), { execArgv })
 
   child.on('message', data => {
