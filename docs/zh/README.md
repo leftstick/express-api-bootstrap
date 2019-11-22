@@ -24,7 +24,7 @@ footer: MIT Licensed | Copyright © 2019-present Howard.Zuo
 
 `express-api-bootstrap` 受启发于[springboot](https://spring.io/projects/spring-boot/)，基于[express](https://expressjs.com/)实现。使开发 API service 更轻松。你要做的，就是关注业务，然后运行。剩下的，我们为您搞定
 
-## 安装
+## 快速开始
 
 ### 环境搭建
 

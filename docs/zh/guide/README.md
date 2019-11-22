@@ -9,8 +9,8 @@
 ## 特色
 
 - 约定优于配置
-- 基于 [typescript](http://www.typescriptlang.org/) 的类型系统，让您编码更high
+- 基于 [typescript](http://www.typescriptlang.org/) 的类型系统，让您编码更 high
 - 超简单的插件系统，随心所欲编写插件
-- [Spring MVC](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html) 风格的API
+- [Spring MVC](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html) 风格的 API
 - 依托于 [vscode](https://code.visualstudio.com/) 的超简单调试手段
 - 轻松编写/运行测试用例
