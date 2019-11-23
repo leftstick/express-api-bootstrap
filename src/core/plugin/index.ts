@@ -50,7 +50,7 @@ function hasIncorrectPlugin(plugins: any[]) {
 
 function getExternalPluginModules(plugins: any[]) {
   const modulePaths = [
-    ...plugins.map(plugin => ({ mp: join(cwd(), plugin.name), options: plugin.options })),
+    ...plugins.map(plugin => ({ mp: join(cwd(), 'plugins', plugin.name), options: plugin.options })),
     ...plugins.map(plugin => ({ mp: join(cwd(), 'node_modules', plugin.name), options: plugin.options }))
   ]
 

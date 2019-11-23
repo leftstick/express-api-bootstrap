@@ -1,6 +1,8 @@
 const { fork } = require('child_process')
 const signale = require('signale')
 
+const { diffTsConfig } = require('../../helper/tsconfigTool')
+
 const usedPorts = []
 
 function start(scriptPath) {
@@ -52,6 +54,17 @@ module.exports = {
   description: 'Launch application in debug mode',
   options: [],
   action() {
+    const compareResult = diffTsConfig()
+    if ('NO_TSCONFIG_PROVIDED' === compareResult) {
+      return signale.warn('tsconfig.json not found, use `boot init` first')
+    } else if (compareResult) {
+      signale.warn('tsconfig.json you provided has something different as it should be, see blow:')
+      console.log(compareResult)
+      return signale.warn(
+        'you have to change it back first, otherwise `boot dev/build/serve` may not working as expected'
+      )
+    }
+
     start(require.resolve('./realDev'))
   }
 }

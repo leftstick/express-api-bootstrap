@@ -4,6 +4,7 @@ const { resolve, join } = require('path')
 const { existsSync } = require('fs')
 const { Container } = require('typedi')
 const express = require('express')
+const { diffTsConfig } = require('../../helper/tsconfigTool')
 const cwd = process.cwd()
 
 module.exports = {
@@ -11,8 +12,15 @@ module.exports = {
   description: 'Launch server from generated code',
   options: [],
   action() {
-    if (!existsSync(resolve(cwd, 'tsconfig.json'))) {
-      return signale.error("tsconfig.json doesn't exist, please use `boot init` first")
+    const compareResult = diffTsConfig()
+    if ('NO_TSCONFIG_PROVIDED' === compareResult) {
+      return signale.warn('tsconfig.json not found, use `boot init` first')
+    } else if (compareResult) {
+      signale.warn('tsconfig.json you provided has something different as it should be, see blow:')
+      console.log(compareResult)
+      return signale.warn(
+        'you have to change it back first, otherwise `boot dev/build/serve` may not working as expected'
+      )
     }
     require('reflect-metadata')
     require('../../../build/babel/registerBabel')({
