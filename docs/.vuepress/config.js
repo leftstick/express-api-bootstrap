@@ -31,7 +31,8 @@ module.exports = {
         nav: [
           { text: 'Guide', link: '/guide/', ariaLabel: 'Guide' },
           { text: 'Configuration', link: '/config/', ariaLabel: 'Config' },
-          { text: 'API', link: '/api/', ariaLabel: 'API' }
+          { text: 'API', link: '/api/', ariaLabel: 'API' },
+          { text: 'Plugin', link: '/plugin/', ariaLabel: 'Plugin' }
         ],
         sidebar: {
           '/guide/': [
@@ -58,6 +59,18 @@ module.exports = {
               title: 'API',
               collapsable: false,
               children: ['']
+            }
+          ],
+          '/plugin/': [
+            {
+              title: 'Plugin',
+              collapsable: false,
+              children: ['']
+            },
+            {
+              title: 'Develop Plugin',
+              collapsable: false,
+              children: ['develop-plugin']
             }
           ]
         }
