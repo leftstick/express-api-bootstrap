@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>开发插件 | Express Api Bootstrap</title>
+    <meta name="description" content="express-api-bootstrap 使开发API service更轻松。你要做的，就是关注业务，然后运行。剩下的，我们为您搞定">
+    
+    
+    <link rel="preload" href="/express-api-bootstrap/assets/css/0.styles.1e98c0b7.css" as="style"><link rel="preload" href="/express-api-bootstrap/assets/js/app.3ea51ba5.js" as="script"><link rel="preload" href="/express-api-bootstrap/assets/js/3.c252f58a.js" as="script"><link rel="preload" href="/express-api-bootstrap/assets/js/27.bf6bf1c6.js" as="script"><link rel="prefetch" href="/express-api-bootstrap/assets/js/10.a9d8c986.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/11.e14df8ec.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/12.d5d87635.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/13.dc68fae4.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/14.7617021c.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/15.5f9afe98.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/16.12f770e0.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/17.c881fec9.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/18.6a698891.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/19.966890d9.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/20.a7be6b4a.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/21.3468c0a7.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/22.bd7de433.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/23.918df5b3.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/24.9036f902.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/25.a434baaf.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/26.af4c5327.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/28.1a6e8768.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/4.9df50ebf.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/5.519853a1.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/6.b1229ecd.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/7.32f50489.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/8.4c8969e5.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/9.7d8f3d59.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/vendors~docsearch.b3b0404a.js">
+    <link rel="stylesheet" href="/express-api-bootstrap/assets/css/0.styles.1e98c0b7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/express-api-bootstrap/zh/" class="home-link router-link-active"><!----> <span class="site-name">Express Api Bootstrap</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/express-api-bootstrap/zh/guide/" class="nav-link">指南</a></div><div class="nav-item"><a href="/express-api-bootstrap/zh/config/" class="nav-link">配置</a></div><div class="nav-item"><a href="/express-api-bootstrap/zh/api/" class="nav-link">API</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Select language" class="dropdown-title"><span class="title">选择语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/express-api-bootstrap/plugin/develop-plugin.html" class="nav-link">English</a></li><li class="dropdown-item"><!----> <a href="/express-api-bootstrap/zh/plugin/develop-plugin.html" class="nav-link router-link-exact-active router-link-active">简体中文</a></li></ul></div></div> <a href="https://github.com/leftstick/express-api-bootstrap" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/express-api-bootstrap/zh/guide/" class="nav-link">指南</a></div><div class="nav-item"><a href="/express-api-bootstrap/zh/config/" class="nav-link">配置</a></div><div class="nav-item"><a href="/express-api-bootstrap/zh/api/" class="nav-link">API</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Select language" class="dropdown-title"><span class="title">选择语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/express-api-bootstrap/plugin/develop-plugin.html" class="nav-link">English</a></li><li class="dropdown-item"><!----> <a href="/express-api-bootstrap/zh/plugin/develop-plugin.html" class="nav-link router-link-exact-active router-link-active">简体中文</a></li></ul></div></div> <a href="https://github.com/leftstick/express-api-bootstrap" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="开发插件"><a href="#开发插件" class="header-anchor">#</a> 开发插件</h1> <p>让我们通过一个日志插件例子来介绍如何开发插件吧</p> <h2 id="初始化插件"><a href="#初始化插件" class="header-anchor">#</a> 初始化插件</h2> <p><strong>在项目里直接写插件</strong></p> <p>你的项目根目录下，新建 <code>&lt;rootDir&gt;/plugins</code>:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ensure &lt;rootDir&gt;/plugins exist</span>
+<span class="token function">mkdir</span> plugins
+
+<span class="token comment"># create folder for your plugin</span>
+<span class="token function">mkdir</span> plugins/log-plugin
+
+<span class="token comment"># create plugin entry</span>
+<span class="token function">touch</span> plugins/log-plugin/index.ts
+
+<span class="token comment"># create plugin type</span>
+<span class="token function">touch</span> plugins/log-plugin/type.ts
+</code></pre></div><p>注意， <code>type.ts</code> 文件的内容将来会在 <code>.bootrc.ts</code> 里被用到。因为这个机制，你自定义插件所需的配置，也可以在得到类型提示。</p> <h2 id="写插件"><a href="#写插件" class="header-anchor">#</a> 写插件</h2> <p><code>type.ts</code> 是用来声明你自定义插件所需配置的类型的，必须放在插件根目录，且名字也必须叫 <code>type.ts</code></p> <p>打开 <code>plugins/log-plugin/type.ts</code>, 添加如下代码:</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> HttpRequest <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'express-api-bootstrap'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IPluginType</span> <span class="token punctuation">{</span>
+  <span class="token comment">/**
+   * 日志插件所需配置
+   *
+   * 默认启用状态。指定 false 可以关闭
+   */</span>
+  log<span class="token operator">?</span><span class="token punctuation">:</span> ILogConfig <span class="token operator">|</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">ILogConfig</span> <span class="token punctuation">{</span>
+  <span class="token comment">/**
+   * 日志格式化方法
+   */</span>
+  <span class="token function-variable function">logFormatter</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">:</span> HttpRequest</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token builtin">string</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>打开 <code>plugins/log-plugin/index.ts</code> ，添加如下代码</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Express<span class="token punctuation">,</span> PluginOrderEnum<span class="token punctuation">,</span> IPluginFactory<span class="token punctuation">,</span> HttpRequest<span class="token punctuation">,</span> HttpResponse <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'express-api-bootstrap'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> IPluginType <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./type'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token operator">&lt;</span>IPluginFactory<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token parameter">opts</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 指定插件运行在API注册之前</span>
+    order<span class="token punctuation">:</span> PluginOrderEnum<span class="token punctuation">.</span><span class="token constant">BEFORE_API_INIT</span><span class="token punctuation">,</span>
+    <span class="token comment">// 这个函数很重要，是保证插件可以0配置启动的基础，所有内容都必须提供默认值</span>
+    <span class="token function">configHandler</span><span class="token punctuation">(</span><span class="token parameter">config<span class="token punctuation">:</span> IPluginType</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> opts <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token function-variable function">logFormatter</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">:</span> HttpRequest</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">INFO: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>req<span class="token punctuation">.</span>ip<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> =&gt; </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>req<span class="token punctuation">.</span>path<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> =&gt; query:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span>query<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> =&gt; body:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>
+            req<span class="token punctuation">.</span>body
+          <span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>log <span class="token operator">===</span> undefined <span class="token operator">||</span> config<span class="token punctuation">.</span>log <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">||</span> config<span class="token punctuation">.</span>log <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+          log<span class="token punctuation">:</span> opts
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>log<span class="token punctuation">.</span>logFormatter<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        opts<span class="token punctuation">.</span>logFormatter <span class="token operator">=</span> config<span class="token punctuation">.</span>log<span class="token punctuation">.</span>logFormatter
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">:</span> opts
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// 这是插件执行的核心部分</span>
+    <span class="token function">pluginHandler</span><span class="token punctuation">(</span><span class="token parameter">app<span class="token punctuation">:</span> Express<span class="token punctuation">,</span> config<span class="token punctuation">:</span> IPluginType</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+      <span class="token comment">// 拦截所有请求</span>
+      app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">:</span> HttpRequest<span class="token punctuation">,</span> res<span class="token punctuation">:</span> HttpResponse<span class="token punctuation">,</span> next<span class="token punctuation">:</span> <span class="token builtin">Function</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 当发现 日志插件 关闭 时，不做处理</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>log <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// 我这里就根据传入的 logFormatter 将日志直接console输出了，你也可以换成任意你需要的形式</span>
+        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>log<span class="token punctuation">.</span><span class="token function">logFormatter</span><span class="token punctuation">(</span>req<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>最后，你需要执行下如下指令:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># re-generate express-api-bootstrap/types</span>
+npx boot init
+</code></pre></div><blockquote><p>如果你需要 vscode 的 IntelliSense，那么这步很重要</p></blockquote> <img src="/express-api-bootstrap/plugin-intelliSense.gif" alt="plugin-intelliSense"> <p>在 <code>.bootrc.ts</code> 里，添加你刚写好的插件：</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> IBootConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'express-api-bootstrap/types'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token operator">&lt;</span>IBootConfig<span class="token operator">&gt;</span><span class="token punctuation">{</span>
+  plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      name<span class="token punctuation">:</span> <span class="token string">'log-plugin'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p><code>express-api-bootstrap</code> 会从 <code>.bootrc.ts</code> 里提取 <code>plugins</code> 选项，然后再 <code>node_modules/</code> 和 <code>&lt;rootDir&gt;/Plugins/</code> 下扫描对应的插件，并激活</p></blockquote></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2019/11/25 下午1:25:10</span></div></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/express-api-bootstrap/assets/js/app.3ea51ba5.js" defer></script><script src="/express-api-bootstrap/assets/js/3.c252f58a.js" defer></script><script src="/express-api-bootstrap/assets/js/27.bf6bf1c6.js" defer></script>
+  </body>
+</html>
