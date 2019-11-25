@@ -37,10 +37,10 @@ cd test-boot-app
 npm init -y
 
 # 用 yarn 添加依赖
-yarn add express-api-bootstrap tslib typescript tsconfig-paths @types/jest @types/node jest ts-jest
+yarn add express-api-bootstrap tslib typescript tsconfig-paths @types/express @types/jest @types/node jest ts-jest
 
 # 用 npm 添加依赖
-npm i express-api-bootstrap tslib typescript tsconfig-paths @types/jest @types/node jest ts-jest
+npm i express-api-bootstrap tslib typescript tsconfig-paths @types/express @types/jest @types/node jest ts-jest
 
 # 初始化 express-api-bootstrap 所需环境
 npx boot init
