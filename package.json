@@ -1,6 +1,6 @@
 {
   "name": "express-api-bootstrap",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "express-api-bootstrap makes it easy to create stand-alone, production-grade express based API servers that you can \"just run\"",
   "main": "./libs/index.js",
   "typings": "./libs/src/index.d.ts",
@@ -51,15 +51,6 @@
     "url": "https://github.com/leftstick/express-api-bootstrap/issues"
   },
   "homepage": "https://github.com/leftstick/express-api-bootstrap#readme",
-  "peerDependencies": {
-    "@types/express": "^4.17.2",
-    "@types/jest": "^24.0.23",
-    "jest": "^24.9.0",
-    "ts-jest": "^24.1.0",
-    "tslib": "^1.10.0",
-    "tsconfig-paths": "^3.9.0",
-    "typescript": "^3.7.2"
-  },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.7.0",
     "@babel/plugin-proposal-decorators": "^7.7.0",
@@ -67,18 +58,25 @@
     "@babel/preset-typescript": "^7.7.2",
     "@babel/register": "^7.7.0",
     "@zerollup/ts-transform-paths": "^1.7.7",
+    "@types/express": "^4.17.2",
+    "@types/jest": "^24.0.23",
     "babel-plugin-parameter-decorator": "^1.0.12",
     "chokidar": "^3.3.0",
     "commander": "^4.0.1",
     "del": "^5.1.0",
     "express": "^4.17.1",
     "glob": "^7.1.6",
+    "jest": "^24.9.0",
     "json-diff": "^0.5.4",
     "lodash.template": "^4.5.0",
     "ora": "^4.0.3",
     "reflect-metadata": "^0.1.13",
     "signale": "^1.4.0",
-    "typedi": "^0.8.0"
+    "ts-jest": "^24.1.0",
+    "tslib": "^1.10.0",
+    "tsconfig-paths": "^3.9.0",
+    "typedi": "^0.8.0",
+    "typescript": "^3.7.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
