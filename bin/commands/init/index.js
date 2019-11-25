@@ -1,4 +1,5 @@
 const signale = require('signale')
+const { resolve } = require('path')
 
 const { diffTsConfig, copyTsConfig } = require('../../helper/tsconfigTool')
 
@@ -10,6 +11,7 @@ module.exports = {
     const compareResult = diffTsConfig()
     if ('NO_TSCONFIG_PROVIDED' === compareResult) {
       signale.warn('tsconfig.json not found, will be created')
+      const userProvidedTsConfigPath = resolve(process.cwd(), 'tsconfig.json')
       copyTsConfig(userProvidedTsConfigPath)
       signale.success('tsconfig.json generated')
     } else if (compareResult) {
