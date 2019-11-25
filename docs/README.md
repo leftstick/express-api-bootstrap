@@ -37,12 +37,10 @@ cd test-boot-app
 npm init -y
 
 # add required dependencies use yarn
-yarn add express-api-bootstrap tslib typescript
-yarn add @types/jest @types/node jest ts-jest --save-dev
+yarn add express-api-bootstrap tslib typescript tsconfig-paths @types/jest @types/node jest ts-jest
 
 # add required dependencies use npm
-npm i express-api-bootstrap tslib typescript
-npm i @types/jest @types/node jest ts-jest --save-dev
+npm i express-api-bootstrap tslib typescript tsconfig-paths @types/jest @types/node jest ts-jest
 
 # init express-api-bootstrap required env
 npx boot init
