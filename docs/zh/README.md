@@ -36,9 +36,12 @@ cd test-boot-app
 # 无交互模式生成一个基本的package.json
 npm init -y
 
-# 添加依赖
-yarn add express-api-bootstrap tslib typescript
-yarn add @types/jest @types/node jest ts-jest --dev
+# 用 yarn 添加依赖
+yarn add express-api-bootstrap
+
+# 用 npm 添加依赖
+npm i express-api-bootstrap tslib typescript
+npm i @types/jest @types/node jest ts-jest --save-dev
 
 # 初始化 express-api-bootstrap 所需环境
 npx boot init
@@ -88,9 +91,9 @@ export default HelloControler
 [npm-url]: https://npmjs.org/package/express-api-bootstrap
 [npm-image]: https://badge.fury.io/js/express-api-bootstrap.png
 [david-url]: https://david-dm.org/leftstick/express-api-bootstrap.png
-[travis-image]: https://www.travis-ci.org/leftstick/express-api-bootstrap.svg?branch=3.x
+[travis-image]: https://www.travis-ci.org/leftstick/express-api-bootstrap.svg?branch=master
 [travis-url]: https://travis-ci.com/leftstick/express-api-bootstrap
-[coverage-image]: https://coveralls.io/repos/github/leftstick/express-api-bootstrap/badge.svg?branch=3.x
+[coverage-image]: https://coveralls.io/repos/github/leftstick/express-api-bootstrap/badge.svg?branch=master
 [coverage-url]: https://coveralls.io/github/leftstick/express-api-bootstrap
 [dt-url]: https://img.shields.io/npm/dt/express-api-bootstrap.svg
 [license-url]: https://img.shields.io/github/license/leftstick/express-api-bootstrap
