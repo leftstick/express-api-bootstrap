@@ -21,7 +21,8 @@ cd test-boot-app
 npm init -y
 
 # add required dependencies use yarn
-yarn add express-api-bootstrap
+yarn add express-api-bootstrap tslib typescript
+yarn add @types/jest @types/node jest ts-jest --save-dev
 
 # add required dependencies use npm
 npm i express-api-bootstrap tslib typescript

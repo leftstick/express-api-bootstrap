@@ -37,7 +37,8 @@ cd test-boot-app
 npm init -y
 
 # 用 yarn 添加依赖
-yarn add express-api-bootstrap
+yarn add express-api-bootstrap tslib typescript
+yarn add @types/jest @types/node jest ts-jest --save-dev
 
 # 用 npm 添加依赖
 npm i express-api-bootstrap tslib typescript
