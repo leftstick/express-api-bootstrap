@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Develop Plugin | Express Api Bootstrap</title>
+    <meta name="description" content="express-api-bootstrap makes it easy to create stand-alone, production-grade express based API servers that you can &quot;just run&quot;">
+    
+    
+    <link rel="preload" href="/express-api-bootstrap/assets/css/0.styles.1e98c0b7.css" as="style"><link rel="preload" href="/express-api-bootstrap/assets/js/app.559aa614.js" as="script"><link rel="preload" href="/express-api-bootstrap/assets/js/3.c252f58a.js" as="script"><link rel="preload" href="/express-api-bootstrap/assets/js/16.0d9bb487.js" as="script"><link rel="prefetch" href="/express-api-bootstrap/assets/js/10.a9d8c986.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/11.e14df8ec.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/12.f45f1b39.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/13.ddbb95a3.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/14.c69baf4e.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/15.688e5cbc.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/17.86279b35.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/18.ce032aaa.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/19.f68574e6.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/20.b5188847.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/21.11b64cc3.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/22.f510cff4.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/23.918df5b3.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/24.ad3dace1.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/25.4eed3996.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/26.bda6ad7a.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/4.e7bd692a.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/5.519853a1.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/6.d1fa49c1.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/7.82ad75bf.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/8.22a14ef8.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/9.de954896.js"><link rel="prefetch" href="/express-api-bootstrap/assets/js/vendors~docsearch.b3b0404a.js">
+    <link rel="stylesheet" href="/express-api-bootstrap/assets/css/0.styles.1e98c0b7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/express-api-bootstrap/" class="home-link router-link-active"><!----> <span class="site-name">Express Api Bootstrap</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/express-api-bootstrap/guide/" class="nav-link">Guide</a></div><div class="nav-item"><a href="/express-api-bootstrap/config/" class="nav-link">Configuration</a></div><div class="nav-item"><a href="/express-api-bootstrap/api/" class="nav-link">API</a></div><div class="nav-item"><a href="/express-api-bootstrap/plugin/" class="nav-link router-link-active">Plugin</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Select language" class="dropdown-title"><span class="title">Languages</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/express-api-bootstrap/plugin/develop-plugin.html" class="nav-link router-link-exact-active router-link-active">English</a></li><li class="dropdown-item"><!----> <a href="/express-api-bootstrap/zh/" class="nav-link">简体中文</a></li></ul></div></div> <a href="https://github.com/leftstick/express-api-bootstrap" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/express-api-bootstrap/guide/" class="nav-link">Guide</a></div><div class="nav-item"><a href="/express-api-bootstrap/config/" class="nav-link">Configuration</a></div><div class="nav-item"><a href="/express-api-bootstrap/api/" class="nav-link">API</a></div><div class="nav-item"><a href="/express-api-bootstrap/plugin/" class="nav-link router-link-active">Plugin</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Select language" class="dropdown-title"><span class="title">Languages</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/express-api-bootstrap/plugin/develop-plugin.html" class="nav-link router-link-exact-active router-link-active">English</a></li><li class="dropdown-item"><!----> <a href="/express-api-bootstrap/zh/" class="nav-link">简体中文</a></li></ul></div></div> <a href="https://github.com/leftstick/express-api-bootstrap" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Plugin</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/express-api-bootstrap/plugin/" class="sidebar-link">Plugin</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Develop Plugin</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/express-api-bootstrap/plugin/develop-plugin.html" class="active sidebar-link">Develop Plugin</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/express-api-bootstrap/plugin/develop-plugin.html#initialize-plugin" class="sidebar-link">Initialize Plugin</a></li><li class="sidebar-sub-header"><a href="/express-api-bootstrap/plugin/develop-plugin.html#write-plugin-function" class="sidebar-link">Write Plugin Function</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="develop-plugin"><a href="#develop-plugin" class="header-anchor">#</a> Develop Plugin</h1> <p>Let's try to create a log plugin as tutorial.</p> <h2 id="initialize-plugin"><a href="#initialize-plugin" class="header-anchor">#</a> Initialize Plugin</h2> <p><strong>Create plugin for your repo</strong></p> <p>create a folder under <code>&lt;rootDir&gt;/plugins</code>:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># ensure &lt;rootDir&gt;/plugins exist</span>
+<span class="token function">mkdir</span> plugins
+
+<span class="token comment"># create folder for your plugin</span>
+<span class="token function">mkdir</span> plugins/log-plugin
+
+<span class="token comment"># create plugin entry</span>
+<span class="token function">touch</span> plugins/log-plugin/index.ts
+
+<span class="token comment"># create plugin type</span>
+<span class="token function">touch</span> plugins/log-plugin/type.ts
+</code></pre></div><p>Note that, <code>type.ts</code> will be used in <code>.bootrc.ts</code> if your plugin provides specific configuration.</p> <h2 id="write-plugin-function"><a href="#write-plugin-function" class="header-anchor">#</a> Write Plugin Function</h2> <p><code>type.ts</code> is used to define the specific configuration required in your plugin.</p> <p>Open <code>plugins/log-plugin/type.ts</code>, with below code boilerplate:</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> HttpRequest <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'express-api-bootstrap'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">IPluginType</span> <span class="token punctuation">{</span>
+  <span class="token comment">/**
+   * Log configuration.
+   *
+   * This plugin is enable by default
+   */</span>
+  log<span class="token operator">?</span><span class="token punctuation">:</span> ILogConfig <span class="token operator">|</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">ILogConfig</span> <span class="token punctuation">{</span>
+  <span class="token comment">/**
+   * Log formatter
+   */</span>
+  <span class="token function-variable function">logFormatter</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">:</span> HttpRequest</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token builtin">string</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Open <code>plugins/log-plugin/index.ts</code>, with below code boilerplate:</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Express<span class="token punctuation">,</span> PluginOrderEnum<span class="token punctuation">,</span> IPluginFactory<span class="token punctuation">,</span> HttpRequest<span class="token punctuation">,</span> HttpResponse <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'express-api-bootstrap'</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> IPluginType <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./type'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token operator">&lt;</span>IPluginFactory<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token parameter">opts</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token comment">// define what lifecycle you want your plugin to be executed</span>
+    order<span class="token punctuation">:</span> PluginOrderEnum<span class="token punctuation">.</span><span class="token constant">BEFORE_API_INIT</span><span class="token punctuation">,</span>
+    <span class="token comment">// this func is important, by which the user can use this plugin without any config</span>
+    <span class="token function">configHandler</span><span class="token punctuation">(</span><span class="token parameter">config<span class="token punctuation">:</span> IPluginType</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> opts <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token function-variable function">logFormatter</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">:</span> HttpRequest</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">INFO: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>req<span class="token punctuation">.</span>ip<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> =&gt; </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>req<span class="token punctuation">.</span>path<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> =&gt; query:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span>query<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> =&gt; body:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>
+            req<span class="token punctuation">.</span>body
+          <span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>log <span class="token operator">===</span> undefined <span class="token operator">||</span> config<span class="token punctuation">.</span>log <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">||</span> config<span class="token punctuation">.</span>log <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">{</span>
+          log<span class="token punctuation">:</span> opts
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>log<span class="token punctuation">.</span>logFormatter<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        opts<span class="token punctuation">.</span>logFormatter <span class="token operator">=</span> config<span class="token punctuation">.</span>log<span class="token punctuation">.</span>logFormatter
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        log<span class="token punctuation">:</span> opts
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// this func is the core part of your plugin</span>
+    <span class="token function">pluginHandler</span><span class="token punctuation">(</span><span class="token parameter">app<span class="token punctuation">:</span> Express<span class="token punctuation">,</span> config<span class="token punctuation">:</span> IPluginType</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">:</span> HttpRequest<span class="token punctuation">,</span> res<span class="token punctuation">:</span> HttpResponse<span class="token punctuation">,</span> next<span class="token punctuation">:</span> <span class="token builtin">Function</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>log <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// i choose console here, you can use any log system you prefered</span>
+        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>log<span class="token punctuation">.</span><span class="token function">logFormatter</span><span class="token punctuation">(</span>req<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>And at last, if you want to use this plugin, you have to:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># re-generate express-api-bootstrap/types</span>
+npx boot init
+</code></pre></div><blockquote><p>It is important if you want developer benefits from vscode's IntelliSense as below:</p></blockquote> <img src="/express-api-bootstrap/plugin-intelliSense.gif" alt="plugin-intelliSense"> <p>Create <code>.bootrc.ts</code>, and add your plugin:</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> IBootConfig <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'express-api-bootstrap/types'</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token operator">&lt;</span>IBootConfig<span class="token operator">&gt;</span><span class="token punctuation">{</span>
+  plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      name<span class="token punctuation">:</span> <span class="token string">'log-plugin'</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p><code>express-api-bootstrap</code> will scan plugins defined in <code>.bootrc.ts</code> from <code>node_modules/</code> and <code>&lt;rootDir&gt;/Plugins/</code></p></blockquote></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">11/25/2019, 11:54:37 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/express-api-bootstrap/plugin/" class="prev router-link-active">Plugin</a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/express-api-bootstrap/assets/js/app.559aa614.js" defer></script><script src="/express-api-bootstrap/assets/js/3.c252f58a.js" defer></script><script src="/express-api-bootstrap/assets/js/16.0d9bb487.js" defer></script>
+  </body>
+</html>
