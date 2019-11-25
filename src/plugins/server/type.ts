@@ -18,4 +18,12 @@ interface IServerConfig {
    * Or false to disable this feature
    */
   staticDir?: string | false
+  /**
+   * Indicates the app is behind a front-facing proxy, and to
+   * use the X-Forwarded-* headers to determine the connection
+   * and the IP address of the client.
+   *
+   * Default is false
+   */
+  trustProxy?: boolean
 }

@@ -3,7 +3,7 @@
 ## server
 
 - Type: `IServerConfig`
-- Default: `{ port: 8080, staticDir: join(process.cwd(), 'public') }`
+- Default: `{ port: 8080, staticDir: join(process.cwd(), 'public'), trustProxy: false }`
 
 Config for `express` server
 
@@ -16,7 +16,8 @@ import { IBootConfig } from 'express-api-bootstrap/types'
 export default <IBootConfig>{
   server: {
     port: 9000,
-    staticDir: join(__dirname, 'static')
+    staticDir: join(__dirname, 'static'),
+    trustProxy: true
   }
 }
 ```

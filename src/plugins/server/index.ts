@@ -15,7 +15,8 @@ export default () => {
         return {
           server: {
             port: 8080,
-            staticDir: path.resolve(cwd(), 'public')
+            staticDir: path.resolve(cwd(), 'public'),
+            trustProxy: false
           }
         }
       }
@@ -23,7 +24,8 @@ export default () => {
       return {
         server: {
           port: isEmpty(config.server.port) ? 8080 : config.server.port,
-          staticDir: isEmpty(config.server.staticDir) ? path.resolve(cwd(), 'public') : config.server.staticDir
+          staticDir: isEmpty(config.server.staticDir) ? path.resolve(cwd(), 'public') : config.server.staticDir,
+          trustProxy: isEmpty(config.server.trustProxy) ? false : config.server.trustProxy
         }
       }
     },
