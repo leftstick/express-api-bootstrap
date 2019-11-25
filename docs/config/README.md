@@ -38,6 +38,29 @@ export default <IBootConfig>{
 }
 ```
 
+## requestParser
+
+- Type: `IRequestParserConfig | false`
+- Default: `{ config(app, parsers) {app.use(parsers.bodyParser.json());app.use(parsers.cookieParser());} }`
+
+Whether to enable requestParser feature
+
+Example:
+
+```typescript
+import { Express, IParsers } from 'express-api-bootstrap'
+import { IBootConfig } from 'express-api-bootstrap/types'
+
+export default <IBootConfig>{
+  requestParser: {
+    config(app: Express, parsers: IParsers) {
+      app.use(parsers.bodyParser.json())
+      app.use(parsers.cookieParser())
+    }
+  }
+}
+```
+
 ## api
 
 - Type: `IApiConfig`
