@@ -41,8 +41,7 @@ npm init -y
 Add required dependencies:
 
 ```bash
-yarn add express-api-bootstrap tslib typescript
-yarn add @types/jest jest ts-jest --dev
+yarn add express-api-bootstrap
 ```
 
 Init `express-api-bootstrap` required env:

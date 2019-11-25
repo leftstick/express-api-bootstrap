@@ -40,8 +40,7 @@ npm init -y
 添加必要依赖
 
 ```bash
-yarn add express-api-bootstrap tslib typescript
-yarn add @types/jest jest ts-jest --dev
+yarn add express-api-bootstrap
 ```
 
 初始化 `express-api-bootstrap` 所需环境：
