@@ -26,6 +26,10 @@ footer: MIT Licensed | Copyright © 2019-present Howard.Zuo
 
 ## Quick Start
 
+Create your first API server in 2mins 26secs
+
+<img :src="$withBase('/quickdemo.gif')" alt="demo">
+
 ### Setup Environment
 
 ```bash
