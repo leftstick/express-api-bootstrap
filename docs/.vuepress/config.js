@@ -1,5 +1,19 @@
 module.exports = {
-  serviceWorker: true,
+  plugins: {
+    '@vuepress/pwa': {
+      serviceWorker: true,
+      updatePopup: {
+        '/': {
+          message: 'New content is available.',
+          buttonText: 'Refresh'
+        },
+        '/zh/': {
+          message: '发现新内容可用',
+          buttonText: '刷新'
+        }
+      }
+    }
+  },
   base: '/express-api-bootstrap/',
   title: 'Express Api Bootstrap',
   locales: {
@@ -21,12 +35,6 @@ module.exports = {
       '/': {
         selectText: 'Languages',
         label: 'English',
-        serviceWorker: {
-          updatePopup: {
-            message: 'New content is available.',
-            buttonText: 'Refresh'
-          }
-        },
         algolia: {},
         nav: [
           { text: 'Guide', link: '/guide/', ariaLabel: 'Guide' },
@@ -78,12 +86,6 @@ module.exports = {
       '/zh/': {
         selectText: '选择语言',
         label: '简体中文',
-        serviceWorker: {
-          updatePopup: {
-            message: '内容有更新',
-            buttonText: '刷新'
-          }
-        },
         algolia: {},
         nav: [
           { text: '指南', link: '/zh/guide/', ariaLabel: 'Guide' },
