@@ -8,4 +8,4 @@ Plugin system in `express-api-bootstrap` is a way to help developer hack in appl
 
 Some lifecycles can be used for plugin development.
 
-It's worth mentioning that core features such as: `server`, `cors`, `source watcher`, `api register` are written via Plugin concept.
+It's worth mentioning that core features such as: `server`, `cors`, `requestParser`, `source watcher`, `api register` are written via Plugin concept.

@@ -8,6 +8,7 @@ import { isArray, isEmpty } from '@/src/core/helper/object'
 
 import cors from '@/src/plugins/cors'
 import api from '@/src/plugins/api'
+import requestParser from '@/src/plugins/requestParser'
 import server from '@/src/plugins/server'
 import watcher from '@/src/plugins/watcher'
 
@@ -21,7 +22,7 @@ interface IPluginDef {
   options: any
 }
 
-const internalPlugins = [cors(), watcher(), api(), server()]
+const internalPlugins = [cors(), watcher(), requestParser(), api(), server()]
 
 export function getExternalPlugins() {
   const factories = getExternalPluginFactories()
