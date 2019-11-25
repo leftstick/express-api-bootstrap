@@ -116,6 +116,18 @@ module.exports = {
               collapsable: false,
               children: ['']
             }
+          ],
+          '/zh/plugin/': [
+            {
+              title: '插件',
+              collapsable: false,
+              children: ['']
+            },
+            {
+              title: '开发插件',
+              collapsable: false,
+              children: ['develop-plugin']
+            }
           ]
         }
       }
