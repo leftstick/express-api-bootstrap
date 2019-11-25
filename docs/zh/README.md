@@ -26,7 +26,7 @@ footer: MIT Licensed | Copyright © 2019-present Howard.Zuo
 
 ## 快速开始
 
-2分26秒创建你的第一个API服务
+1分15秒创建你的第一个API服务
 
 <img :src="$withBase('/quickdemo.gif')" alt="demo">
 

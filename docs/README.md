@@ -26,7 +26,7 @@ footer: MIT Licensed | Copyright © 2019-present Howard.Zuo
 
 ## Quick Start
 
-Create your first API server in 2mins 26secs
+Create your first API server in 1mins 15secs
 
 <img :src="$withBase('/quickdemo.gif')" alt="demo">
 
