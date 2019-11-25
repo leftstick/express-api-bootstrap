@@ -1,4 +1,5 @@
 import { resolve } from 'path'
+import { existsSync } from 'fs'
 import { isEmpty } from '@/src/core/helper/object'
 
 export function cwd() {
@@ -8,6 +9,9 @@ export function cwd() {
 export function getProjectBaseRoot() {
   if (process.env.NODE_ENV === 'development') {
     return resolve(cwd(), 'src')
+  }
+  if (existsSync(resolve(cwd(), 'dist', 'src'))) {
+    return resolve(cwd(), 'dist', 'src')
   }
   return resolve(cwd(), 'dist')
 }
