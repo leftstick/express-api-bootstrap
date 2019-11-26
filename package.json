@@ -1,6 +1,6 @@
 {
   "name": "express-api-bootstrap",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "express-api-bootstrap makes it easy to create stand-alone, production-grade express based API servers that you can \"just run\"",
   "main": "./libs/index.js",
   "typings": "./libs/src/index.d.ts",

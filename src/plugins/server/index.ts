@@ -34,7 +34,8 @@ export default () => {
         isEmpty(config) ||
         isEmpty(config.server) ||
         isEmpty(config.server.port) ||
-        isEmpty(config.server.staticDir)
+        isEmpty(config.server.staticDir) ||
+        isEmpty(config.server.trustProxy)
       ) {
         signale.error('No server config found')
         return
@@ -44,6 +45,9 @@ export default () => {
 
       if (isString(staticDir)) {
         app.use(express.static(staticDir))
+      }
+      if (config.server.trustProxy === true) {
+        app.enable('trust proxy')
       }
 
       return new Promise(resolve => {
