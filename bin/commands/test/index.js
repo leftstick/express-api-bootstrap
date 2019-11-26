@@ -1,5 +1,5 @@
 const signale = require('signale')
-const exec = require('child_process').exec
+const spawn = require('child_process').spawn
 const { resolve } = require('path')
 const { existsSync, copyFileSync } = require('fs')
 
@@ -34,10 +34,20 @@ module.exports = {
       copyFileSync(resolve(__dirname, 'jest.config.js.vm'), userProvidedJestConfig)
       signale.success('jest.config.js generated')
     }
-    const childProcess = exec(`npx jest ${regexForTestFiles || ''} ${cmd.coverage ? '--coverage' : ''} --color`, {
-      cwd
+
+    const args = ['jest']
+
+    if (regexForTestFiles) {
+      args.push(regexForTestFiles)
+    }
+    if (cmd.coverage) {
+      args.push('--coverage')
+    }
+
+    spawn('npx', args, {
+      cwd,
+      detached: false,
+      stdio: 'inherit'
     })
-    childProcess.stdout.pipe(process.stdin)
-    childProcess.stderr.pipe(process.stdin)
   }
 }

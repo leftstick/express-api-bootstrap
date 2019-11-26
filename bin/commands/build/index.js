@@ -1,9 +1,9 @@
 const signale = require('signale')
 const ora = require('ora')
 const del = require('del')
-const exec = require('child_process').exec
+const spawn = require('child_process').spawn
 const { resolve } = require('path')
-const { existsSync, copyFileSync } = require('fs')
+const { existsSync } = require('fs')
 
 module.exports = {
   cmd: 'build',
@@ -16,17 +16,16 @@ module.exports = {
     if (existsSync(distDir)) {
       del.sync(distDir)
     }
-    exec(
-      'npx tsc -p ./tsconfig.json',
-      {
-        cwd: process.cwd()
-      },
-      (err, stdout, sdterr) => {
-        if (err) {
-          return compiling.fail(stdout)
-        }
-        compiling.succeed('source compiled at dist/')
+    const child = spawn('npx', ['tsc', '-p', './tsconfig.json'], {
+      cwd,
+      stdio: 'inherit'
+    })
+
+    child.on('close', code => {
+      if (code === 0) {
+        return compiling.succeed('Source compiled at dist/')
       }
-    )
+      compiling.fail(`Failed to compile source with exit code: ${code}`)
+    })
   }
 }
