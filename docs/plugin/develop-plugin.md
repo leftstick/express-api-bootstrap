@@ -70,9 +70,15 @@ export default <IPluginFactory>(opts => {
         }
       }
 
-      if (config.log === undefined || config.log === null || config.log === false) {
+      if (config.log === undefined || config.log === null) {
         return {
           log: opts
+        }
+      }
+      
+      if (config.log === false) {
+        return {
+          log: false
         }
       }
 
@@ -100,29 +106,28 @@ export default <IPluginFactory>(opts => {
 })
 ```
 
-And at last, if you want to use this plugin, you have to:
-
-```bash
-# re-generate express-api-bootstrap/types
-npx boot init
-```
-
-> It is important if you want developer benefits from vscode's IntelliSense as below:
-
-<img :src="$withBase('/plugin-intelliSense.gif')" alt="plugin-intelliSense">
-
-Create `.bootrc.ts`, and add your plugin:
+Add this plugin in your `.bootrc.ts`, as below:
 
 ```typescript
 import { IBootConfig } from 'express-api-bootstrap/types'
 
 export default <IBootConfig>{
   plugins: [
-    {
-      name: 'log-plugin'
-    }
+     { name: 'log-plugin' }
   ]
 }
 ```
 
-> `express-api-bootstrap` will scan plugins defined in `.bootrc.ts` from `node_modules/` and `<rootDir>/Plugins/`
+And at last, if you want to use this plugin with configuration intelliSense, you need to:
+
+```bash
+# re-generate express-api-bootstrap/types
+npx boot init
+```
+
+> `express-api-bootstrap` will scan plugins defined in `.bootrc.ts` from `node_modules/` and `<rootDir>/Plugins/`, and re-generate proper ts type for you
+
+After that, you are going to get intelliSense like:
+
+<img :src="$withBase('/plugin-intelliSense.gif')" alt="plugin-intelliSense">
+

@@ -70,9 +70,15 @@ export default <IPluginFactory>(opts => {
         }
       }
 
-      if (config.log === undefined || config.log === null || config.log === false) {
+      if (config.log === undefined || config.log === null) {
         return {
           log: opts
+        }
+      }
+      
+      if (config.log === false) {
+        return {
+          log: false
         }
       }
 
@@ -103,17 +109,6 @@ export default <IPluginFactory>(opts => {
 })
 ```
 
-最后，你需要执行下如下指令:
-
-```bash
-# re-generate express-api-bootstrap/types
-npx boot init
-```
-
-> 如果你需要 vscode 的 IntelliSense，那么这步很重要
-
-<img :src="$withBase('/plugin-intelliSense.gif')" alt="plugin-intelliSense">
-
 在 `.bootrc.ts` 里，添加你刚写好的插件：
 
 ```typescript
@@ -128,4 +123,17 @@ export default <IBootConfig>{
 }
 ```
 
+如果你需要vscode的intelliSense功能，你需要执行下如下指令:
+
+```bash
+# re-generate express-api-bootstrap/types
+npx boot init
+```
+
 > `express-api-bootstrap` 会从 `.bootrc.ts` 里提取 `plugins` 选项，然后再 `node_modules/` 和 `<rootDir>/Plugins/` 下扫描对应的插件，并激活
+
+
+然后但你在 `.bootrc.ts` 里写这个插件的配置时，你就能得到如下效果了
+
+<img :src="$withBase('/plugin-intelliSense.gif')" alt="plugin-intelliSense">
+
