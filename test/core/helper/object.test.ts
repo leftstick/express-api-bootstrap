@@ -1,4 +1,4 @@
-import { isNotEmpty, isEmpty, isArray, isPromise, isString } from '@/src/core/helper/object'
+import { isNotEmpty, isEmpty, isArray, isPromise, isString, urlJoin } from '@/src/core/helper/object'
 
 describe('objects', () => {
   it('string check', () => {
@@ -31,5 +31,9 @@ describe('objects', () => {
     expect(isNotEmpty([])).toBeTruthy()
     expect(isNotEmpty(null)).toBeFalsy()
     expect(isNotEmpty(undefined)).toBeFalsy()
+  })
+
+  it('urlJoin check', () => {
+    expect(urlJoin('http://', '/test.view.com/')).toBe('http://test.view.com/')
   })
 })

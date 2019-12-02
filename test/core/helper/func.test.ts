@@ -11,6 +11,7 @@ describe('debounces', () => {
     expect(func).not.toBeCalled()
 
     jest.runTimersToTime(50)
+    debouncedFunction()
     expect(func).not.toBeCalled()
 
     jest.runTimersToTime(100)
