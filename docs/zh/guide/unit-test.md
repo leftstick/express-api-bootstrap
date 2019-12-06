@@ -17,3 +17,33 @@
 ```bash
 boot test waService.test.ts
 ```
+
+## 调试
+
+如果你想调试指定的测试用例文件，讲下面配置加入你的 `.vscode/launch.json`:
+
+```json
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "test specific",
+      "program": "${workspaceFolder}/node_modules/.bin/boot",
+      "args": ["test", "${relativeFile}"],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true,
+      "autoAttachChildProcesses": true
+    }
+  ]
+}
+```
+
+然后打开你想要调试的测试用例文件，然后点击 `F5`(记住选择`test specific`) ，你就能如下这般愉快的调试了:
+
+<img :src="$withBase('/ut-debug.gif')" alt="debug">
