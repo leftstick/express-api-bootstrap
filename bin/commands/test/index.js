@@ -1,7 +1,10 @@
 const signale = require('signale')
-const spawn = require('child_process').spawn
+const fork = require('child_process').fork
 const { resolve } = require('path')
 const { existsSync, copyFileSync } = require('fs')
+
+const { getExecArgs } = require('../../helper/inspect')
+const { findBinDir } = require('../../helper/npm')
 
 const cwd = process.cwd()
 
@@ -35,7 +38,9 @@ module.exports = {
       signale.success('jest.config.js generated')
     }
 
-    const args = ['jest']
+    const execArgv = getExecArgs(process.execArgv.slice(0))
+
+    const args = []
 
     if (regexForTestFiles) {
       args.push(regexForTestFiles)
@@ -44,10 +49,6 @@ module.exports = {
       args.push('--coverage')
     }
 
-    spawn('npx', args, {
-      cwd,
-      detached: false,
-      stdio: 'inherit'
-    })
+    fork(findBinDir('jest'), args, { execArgv })
   }
 }
