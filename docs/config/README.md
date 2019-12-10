@@ -98,7 +98,7 @@ export default <IBootConfig>{
 - Type: `IRateLimitConfig | false`
 - Default: `false`
 
-Configuration pass to express-rate-limit. Defaults to false. Enable rateLimite by passing IRateLimitConfig option.
+Configuration pass to [express-rate-limit](https://github.com/nfriedly/express-rate-limit). Defaults to false. Enable rateLimite by passing IRateLimitConfig option.
 
 **api.rateLimit.max**
 
@@ -108,7 +108,6 @@ Configuration pass to express-rate-limit. Defaults to false. Enable rateLimite b
 Max number of connections during windowMs milliseconds before sending a 429 response.
 
 Defaults to 5. Set to 0 to disable.
-
 
 **api.rateLimit.windowMs**
 
@@ -130,7 +129,6 @@ May be a String, JSON object, or any other value that Express's res.send support
 
 Defaults to 'Too many requests, please try again later.'
 
-
 **api.rateLimit.statusCode**
 
 - Type: `number`
@@ -139,7 +137,6 @@ Defaults to 'Too many requests, please try again later.'
 HTTP status code returned when max is exceeded.
 
 Defaults to 429.
-
 
 **api.rateLimit.headers**
 
@@ -159,7 +156,6 @@ Function used to generate keys.
 
 Defaults to req.ip + req.originalUrl
 
-
 **api.rateLimit.skip**
 
 - Type: `(req: express.Request, res: express.Response) => boolean`
@@ -168,7 +164,6 @@ Defaults to req.ip + req.originalUrl
 Function used to skip (whitelist) requests. Returning true from the function will skip limiting for that request.
 
 Defaults to always false (count all requests).
-
 
 **api.rateLimit.store**
 
@@ -181,7 +176,7 @@ By default, the MemoryStore is used.
 
 Available data stores are:
 
-   - MemoryStore: (default) Simple in-memory option. Does not share state when app has multiple processes or servers.
-   - [rate-limit-redis](https://github.com/wyattjoh/rate-limit-redis): A Redis-backed store, more suitable for large or demanding deployments.
-   - [rate-limit-memcached](https://github.com/linyows/rate-limit-memcached): A Memcached-backed store.
-   - [rate-limit-mongo](https://github.com/2do2go/rate-limit-mongo): A MongoDB-backed store.
+- MemoryStore: (default) Simple in-memory option. Does not share state when app has multiple processes or servers.
+- [rate-limit-redis](https://github.com/wyattjoh/rate-limit-redis): A Redis-backed store, more suitable for large or demanding deployments.
+- [rate-limit-memcached](https://github.com/linyows/rate-limit-memcached): A Memcached-backed store.
+- [rate-limit-mongo](https://github.com/2do2go/rate-limit-mongo): A MongoDB-backed store.
