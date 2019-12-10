@@ -98,7 +98,7 @@ export default () => {
       }
 
       if (config.api.rateLimit) {
-        const apiLimiter = rateLimit(config.api.rateLimit)
+        const apiLimiter = rateLimit(<rateLimit.Options>config.api.rateLimit)
         app.use(apiLimiter)
       }
 
