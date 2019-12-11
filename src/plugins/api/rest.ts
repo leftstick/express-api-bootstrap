@@ -1,7 +1,7 @@
 import express from 'express'
 import signale from 'signale'
 import { Token, Service, Container } from 'typedi'
-import { userConfig } from '@/src/core/plugin'
+import { PluginRunner } from '@/src/core/plugin'
 import { ProcessCtrl } from '@/src/core/env'
 import { urlJoin, isEmpty } from '@/src/core/helper/object'
 
@@ -113,7 +113,7 @@ function injectParameterDecorator(target: any, propertyKey: string, descriptor: 
 
 function registerAPI(target: any, propertyKey: string, path: string, httpMethod: HTTP_METHOD) {
   const app = Container.get(ExpressToken)
-  const { successResponseResolver, failureResponseResolver, prefix } = userConfig.api
+  const { successResponseResolver, failureResponseResolver, prefix } = PluginRunner.getInstance(app).getUserConfig().api
 
   app[httpMethod](urlJoin(prefix, path), async (req: express.Request, res: express.Response) => {
     try {

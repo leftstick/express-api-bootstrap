@@ -43,26 +43,12 @@ module.exports = {
       return signale.error('dist not exist, please run `boot build` first')
     }
 
-    const { pluginRunner, ExpressToken } = ___internal
+    const { PluginRunner, ExpressToken } = ___internal
 
     const app = express()
 
     Container.set(ExpressToken, app)
 
-    pluginRunner
-      .firstStage(app)
-      .then(() => {
-        return pluginRunner.beforeApiInit(app)
-      })
-
-      .then(() => {
-        return pluginRunner.apiInit(app)
-      })
-      .then(() => {
-        return pluginRunner.afterApiInit(app)
-      })
-      .then(() => {
-        pluginRunner.lastStage(app)
-      })
+    PluginRunner.getInstance(app).run()
   }
 }

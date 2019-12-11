@@ -13,25 +13,21 @@ import server from '@/src/plugins/server'
 import watcher from '@/src/plugins/watcher'
 
 import { IPlugin } from '@/src/core/plugin/pluginType'
-import { getRawUserConfig } from '@/src/core/env/userConfigReader'
-
-const rawConfig = getRawUserConfig()
+import { getRawUserConfig, IConfig } from '@/src/core/env/userConfigReader'
 
 interface IPluginDef {
   module: (...args: any) => IPlugin
   options: any
 }
 
-const internalPlugins = [cors(), watcher(), requestParser(), api(), server()]
-
-export function getExternalPlugins() {
-  const factories = getExternalPluginFactories()
+export function getExternalPlugins(rawConfig: IConfig) {
+  const factories = getExternalPluginFactories(rawConfig)
   return factories.map(factory => {
     return factory.module(factory.options)
   })
 }
 
-export function getExternalPluginFactories() {
+function getExternalPluginFactories(rawConfig: IConfig) {
   if (!isArray(rawConfig.plugins)) {
     return []
   }
@@ -71,35 +67,51 @@ function getExternalPluginModules(plugins: any[]) {
     .filter((mod): mod is IPluginDef => !!mod)
 }
 
-const plugins = [...internalPlugins, ...getExternalPlugins()]
+export class PluginRunner {
+  private static instance: PluginRunner
 
-export const userConfig = plugins.reduce((p, c) => {
-  return {
-    ...p,
-    ...c.configHandler(p)
+  private app: express.Express
+  private plugins: IPlugin[]
+  private userConfig: IConfig
+
+  private constructor(app: express.Express) {
+    this.app = app
+    const rawConfig = getRawUserConfig()
+    const internalPlugins: IPlugin[] = [cors(), watcher(), requestParser(), api(), server()]
+
+    this.plugins = [...internalPlugins, ...getExternalPlugins(rawConfig)]
+    this.userConfig = this.plugins.reduce((p, c) => {
+      return {
+        ...p,
+        ...c.configHandler(p)
+      }
+    }, Object.assign({}, rawConfig))
   }
-}, Object.assign({}, rawConfig))
 
-async function execPlugins(order: PluginOrderEnum | InternalPluginOrderEnum, app: express.Express) {
-  const getPlugins = plugins.filter(p => p.order === order)
-  await Promise.all(getPlugins.map(p => p.pluginHandler(app, Object.assign({}, userConfig)) || Promise.resolve()))
-  return undefined
-}
+  static getInstance(app: express.Express): PluginRunner {
+    if (!PluginRunner.instance) {
+      PluginRunner.instance = new PluginRunner(app)
+    }
+    return PluginRunner.instance
+  }
 
-export const pluginRunner = {
-  async firstStage(app: express.Express): Promise<void> {
-    return execPlugins(InternalPluginOrderEnum.FIRST_STAGE, app)
-  },
-  async beforeApiInit(app: express.Express): Promise<void> {
-    return execPlugins(PluginOrderEnum.BEFORE_API_INIT, app)
-  },
-  async apiInit(app: express.Express): Promise<void> {
-    return execPlugins(PluginOrderEnum.API_INIT, app)
-  },
-  async afterApiInit(app: express.Express): Promise<void> {
-    return execPlugins(PluginOrderEnum.AFTER_API_INIT, app)
-  },
-  async lastStage(app: express.Express): Promise<void> {
-    return execPlugins(InternalPluginOrderEnum.FINAL_STAGE, app)
+  getUserConfig() {
+    return this.userConfig
+  }
+
+  async run() {
+    await this.execPlugins(InternalPluginOrderEnum.FIRST_STAGE)
+    await this.execPlugins(PluginOrderEnum.BEFORE_API_INIT)
+    await this.execPlugins(PluginOrderEnum.API_INIT)
+    await this.execPlugins(PluginOrderEnum.AFTER_API_INIT)
+    await this.execPlugins(InternalPluginOrderEnum.FINAL_STAGE)
+  }
+
+  private async execPlugins(order: PluginOrderEnum | InternalPluginOrderEnum) {
+    const getPlugins = this.plugins.filter(p => p.order === order)
+    await Promise.all(
+      getPlugins.map(p => p.pluginHandler(this.app, Object.assign({}, this.userConfig)) || Promise.resolve())
+    )
+    return undefined
   }
 }

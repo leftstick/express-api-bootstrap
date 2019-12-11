@@ -4,7 +4,11 @@ import { join } from 'path'
 
 import { cwd } from '@/src/core/env'
 
-export function getRawUserConfig(): { [index: string]: any } {
+export interface IConfig {
+  [index: string]: any
+}
+
+export function getRawUserConfig(): IConfig {
   try {
     // tslint:disable-next-line: non-literal-require
     const mod = require(join(cwd(), '.bootrc.ts'))

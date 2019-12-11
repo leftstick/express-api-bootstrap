@@ -1,6 +1,6 @@
 import express from 'express'
 import { Service, Container, Token, Inject } from 'typedi'
-import { pluginRunner } from '@/src/core/plugin'
+import { PluginRunner } from '@/src/core/plugin'
 import { IPlugin, IPluginFactory, PluginOrderEnum } from '@/src/core/plugin/pluginType'
 import {
   RestController,
@@ -43,7 +43,7 @@ export type HttpResponse = express.Response
 export type Express = express.Express
 
 export const ___internal = {
-  pluginRunner,
+  PluginRunner,
   setExpressApp,
   ExpressToken,
   ProcessSingle
