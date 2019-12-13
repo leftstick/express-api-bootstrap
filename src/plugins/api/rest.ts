@@ -9,7 +9,7 @@ const PATH_SETS = {
   get: new Set(),
   post: new Set(),
   delete: new Set(),
-  update: new Set(),
+  put: new Set(),
   patch: new Set()
 }
 
@@ -50,15 +50,15 @@ export function DeleteMapping(path: string) {
   return createMapping(path, 'delete')
 }
 
-export function UpdateMapping(path: string) {
-  return createMapping(path, 'update')
+export function PutMapping(path: string) {
+  return createMapping(path, 'put')
 }
 
 export function PatchMapping(path: string) {
   return createMapping(path, 'patch')
 }
 
-type HTTP_METHOD = 'get' | 'post' | 'delete' | 'update' | 'patch'
+type HTTP_METHOD = 'get' | 'post' | 'delete' | 'put' | 'patch'
 
 function createMapping(path: string, httpMethod: HTTP_METHOD) {
   // tslint:disable-next-line: no-function-expression
@@ -66,7 +66,10 @@ function createMapping(path: string, httpMethod: HTTP_METHOD) {
     if (PATH_SETS[httpMethod].has(path)) {
       signale.error(`${httpMethod} ${path} was registered multiple times, please verify your code first`)
       ProcessCtrl.stop()
+      return
     }
+
+    PATH_SETS[httpMethod].add(path)
 
     injectParameterDecorator(target, propertyKey, descriptor)
 

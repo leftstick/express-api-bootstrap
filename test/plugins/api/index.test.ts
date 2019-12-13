@@ -2,7 +2,7 @@ import { resolve } from 'path'
 import { getProjectBaseRoot } from '@/src/core/env'
 import { PluginOrderEnum } from '@/src/core/plugin/pluginType'
 
-describe('env check', () => {
+describe('api check', () => {
   beforeEach(() => {
     jest.resetModules()
   })
