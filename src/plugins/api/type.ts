@@ -14,10 +14,10 @@ export interface IPluginType {
   /**
    * configuration for api
    */
-  api?: IApiConfig
+  api?: IApiConfig | false
 }
 
-interface IApiConfig {
+export interface IApiConfig {
   /**
    * Directory where APIs should be placed.
    *

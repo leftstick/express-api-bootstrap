@@ -5,7 +5,7 @@ import { resolve } from 'path'
 import { isEmpty, isNotEmpty } from '@/src/core/helper/object'
 import { PluginOrderEnum, IPlugin } from '@/src/core/plugin/pluginType'
 import { getProjectBaseRoot } from '@/src/core/env'
-import { IPluginType, IRateLimitConfig } from '@/src/plugins/api/type'
+import { IPluginType, IRateLimitConfig, IApiConfig } from '@/src/plugins/api/type'
 import { BizError } from '@/src/plugins/api/type'
 
 const defaultSuccessResponseResolver = (data: any) => {
@@ -26,8 +26,8 @@ export default () => {
   return <IPlugin>{
     order: PluginOrderEnum.API_INIT,
     configHandler(config: IPluginType): IPluginType {
-      const conf: IPluginType = {
-        api: {
+      const conf = {
+        api: <IApiConfig>{
           scanDir: resolve(getProjectBaseRoot(), 'controllers'),
           prefix: '/apis',
           successResponseResolver: defaultSuccessResponseResolver,
@@ -37,7 +37,17 @@ export default () => {
       }
 
       if (isEmpty(config) || isEmpty(config.api)) {
-        return conf
+        return <IPluginType>conf
+      }
+
+      if (config.api === false) {
+        return {
+          api: false
+        }
+      }
+
+      if (isNotEmpty(conf.api) && isNotEmpty(config.api.scanDir)) {
+        conf.api.scanDir = config.api.scanDir
       }
 
       if (isNotEmpty(conf.api) && isNotEmpty(config.api.prefix)) {
@@ -90,10 +100,10 @@ export default () => {
         }
       }
 
-      return conf
+      return <IPluginType>conf
     },
     pluginHandler(app: express.Express, config: IPluginType) {
-      if (isEmpty(config.api)) {
+      if (isEmpty(config.api) || config.api === false) {
         return
       }
 
