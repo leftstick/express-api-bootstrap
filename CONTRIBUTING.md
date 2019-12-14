@@ -8,20 +8,24 @@ Install dependencies after git clone the repo.
 yarn
 ```
 
-Link `express-api-bootstrap` globally.
+Create a demo project, in which we are going to use `boot` command:
 
 ```bash
-yarn link
+mkdir test-boot
+cd test-boot
+
+# install express-api-bootstrap
+yarn add <local-address-of-express-api-bootstrap>
 ```
 
-> now, `boot` is available at your working system.
+> now, `boot` is available in `test-boot`.
 
-## watch build
+## build
 
-Monitor file changes and transform with `rollup`.
+Compile `express-api-bootstrap` source:
 
 ```bash
-yarn build --watch
+yarn build
 ```
 
 ## tests
