@@ -60,7 +60,7 @@ export default () => {
           const addresses = getIpAddresses()
           signale.success(`App running at below link${addresses.length > 1 ? 's' : ''}:`)
 
-          addresses.forEach(ip => {
+          addresses.forEach((ip: string) => {
             signale.info(`http://${ip}:${port}${config['api']['prefix']}`)
             resolve()
           })
@@ -73,8 +73,10 @@ export default () => {
 function getIpAddresses() {
   const ifaces = os.networkInterfaces()
 
-  return Object.values(ifaces)
-    .reduce((p, c) => p.concat(c), [])
+  const interfaces = Object.values(ifaces).filter((f): f is os.NetworkInterfaceInfo[] => !!f)
+
+  return interfaces
+    .reduce((p, c) => p!.concat(c!), [])
     .filter(iface => iface.family === 'IPv4')
     .map(iface => iface.address)
 }
